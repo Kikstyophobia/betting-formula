@@ -5,10 +5,10 @@ import axios from 'axios';
 
 
 export default function apiRequest() {
-  // const api_key = process.env.REACT_APP_API_KEY;
+  const api_key = process.env.REACT_APP_API_KEY;
   // app.use(cors());
   
-  axios.get(`http://api.sportradar.us/formula1/trial/v2/en/sport_events/sr:stage:686252/probabilities.json?api_key=http://api.sportradar.us/formula1/trial/v2/en/sport_events/sr:stage:686252/probabilities.json?api_key=wu5ewmapjwdztmfneac4c7n5`)
+  axios.get(`http://api.sportradar.us/formula1/trial/v2/en/sport_events/sr:stage:686252/probabilities.json?api_key=http://api.sportradar.us/formula1/trial/v2/en/sport_events/sr:stage:686252/probabilities.json?api_key=${api_key}`)
     .then(data => {
       console.log(data);
     })
