@@ -1,0 +1,406 @@
+{
+    "info": [
+        {
+            "generated_at": "2022-09-13T20:00:47+00:00",
+            "schema": "..\/..\/..\/schemas\/probabilities.json",
+            "stage": {
+                "id": "sr:stage:686488",
+                "description": "Race",
+                "scheduled": "2021-03-28T15:00:00+00:00",
+                "scheduled_end": "2021-03-28T17:00:00+00:00",
+                "type": "race",
+                "status": "Finished",
+                "laps": 57,
+                "laps_completed": 56,
+                "air_temperature": 20,
+                "track_temperature": 26,
+                "humidity": 52,
+                "weather": "Sunny",
+                "substatus": "All laps completed",
+                "pit_open": true,
+                "single_event": false,
+                "parents": [
+                    {
+                        "id": "sr:stage:686472",
+                        "description": "Bahrain Grand Prix 2021",
+                        "scheduled": "2021-03-26T11:30:00+00:00",
+                        "scheduled_end": "2021-03-28T17:00:00+00:00",
+                        "type": "event",
+                        "status": "Finished",
+                        "single_event": false,
+                        "venue": {
+                            "id": "sr:venue:1013",
+                            "name": "Bahrain International Circuit",
+                            "city": "Sakhir",
+                            "country": "Bahrain",
+                            "coordinates": "26.031952,50.510502",
+                            "country_code": "BHR",
+                            "length": 5412,
+                            "curves_left": 7,
+                            "curves_right": 8,
+                            "debut": 2004,
+                            "laps": 57,
+                            "url_official": "https:\/\/www.bahraingp.com\/"
+                        },
+                        "parents": [
+                            {
+                                "id": "sr:stage:686252",
+                                "description": "Formula 1 2021",
+                                "scheduled": "2021-03-26T11:00:00+00:00",
+                                "scheduled_end": "2021-12-12T15:10:00+00:00",
+                                "type": "season",
+                                "category": {
+                                    "id": "sr:category:36",
+                                    "name": "Formula 1"
+                                },
+                                "sport": {
+                                    "id": "sr:sport:40",
+                                    "name": "Formula 1"
+                                },
+                                "single_event": false,
+                                "parents": [
+                                    {
+                                        "id": "sr:stage:7668",
+                                        "description": "Formula 1",
+                                        "type": "sport",
+                                        "single_event": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "probabilities": {
+                "markets": [
+                    {
+                        "name": "outright",
+                        "type": "team",
+                        "description": "Bahrain Grand Prix Race - Winning Constructor",
+                        "outcomes": [
+                            {
+                                "id": "sr:competitor:480013",
+                                "name": "Red Bull Racing",
+                                "probability": 56.28,
+                                "team": {
+                                    "id": "sr:competitor:4978",
+                                    "name": "Red Bull Racing",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:5335752",
+                                "name": "Mercedes Amg Motorsport",
+                                "probability": 33.98,
+                                "team": {
+                                    "id": "sr:competitor:41127",
+                                    "name": "Mercedes",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:695679",
+                                "name": "Alphatauri",
+                                "probability": 2.61,
+                                "team": {
+                                    "id": "sr:competitor:5771",
+                                    "name": "Alphatauri",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:182574",
+                                "name": "McLaren",
+                                "probability": 2.58,
+                                "team": {
+                                    "id": "sr:competitor:4514",
+                                    "name": "McLaren",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:182573",
+                                "name": "Ferrari",
+                                "probability": 2.53,
+                                "team": {
+                                    "id": "sr:competitor:4510",
+                                    "name": "Ferrari",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:11252779",
+                                "name": "Aston Martin F1 Team",
+                                "probability": 0.86,
+                                "team": {
+                                    "id": "sr:competitor:496090",
+                                    "name": "Aston Martin F1 Team",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:250300",
+                                "name": "Alpine F1 Team",
+                                "probability": 0.69,
+                                "team": {
+                                    "id": "sr:competitor:4512",
+                                    "name": "Alpine F1 Team",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:259012",
+                                "name": "Alfa Romeo Racing",
+                                "probability": 0.34,
+                                "team": {
+                                    "id": "sr:competitor:4515",
+                                    "name": "Alfa Romeo Racing",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:88779",
+                                "name": "Williams",
+                                "probability": 0.09,
+                                "team": {
+                                    "id": "sr:competitor:4511",
+                                    "name": "Williams",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:8283897",
+                                "name": "Haas F1 Team",
+                                "probability": 0.04,
+                                "team": {
+                                    "id": "sr:competitor:242902",
+                                    "name": "Haas F1 Team",
+                                    "gender": "male"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "outright",
+                        "type": "competitor",
+                        "description": "Bahrain Grand Prix Race - Winner",
+                        "outcomes": [
+                            {
+                                "id": "sr:competitor:7418515",
+                                "name": "Verstappen, Max",
+                                "probability": 51.69,
+                                "competitor": {
+                                    "id": "sr:competitor:178318",
+                                    "name": "Verstappen, Max",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:881457",
+                                "name": "Hamilton, Lewis",
+                                "probability": 30.42,
+                                "competitor": {
+                                    "id": "sr:competitor:7135",
+                                    "name": "Hamilton, Lewis",
+                                    "gender": "male",
+                                    "nationality": "Great Britain",
+                                    "country_code": "GBR"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:5396007",
+                                "name": "Bottas, Valtteri",
+                                "probability": 5.16,
+                                "competitor": {
+                                    "id": "sr:competitor:41600",
+                                    "name": "Bottas, Valtteri",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:5621367",
+                                "name": "Perez, Sergio",
+                                "probability": 2.79,
+                                "competitor": {
+                                    "id": "sr:competitor:46337",
+                                    "name": "Perez, Sergio",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:10196182",
+                                "name": "Gasly, Pierre",
+                                "probability": 2.04,
+                                "competitor": {
+                                    "id": "sr:competitor:381362",
+                                    "name": "Gasly, Pierre",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:8876349",
+                                "name": "Leclerc, Charles",
+                                "probability": 1.85,
+                                "competitor": {
+                                    "id": "sr:competitor:269471",
+                                    "name": "Leclerc, Charles",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:5396006",
+                                "name": "Ricciardo, Daniel",
+                                "probability": 1.37,
+                                "competitor": {
+                                    "id": "sr:competitor:41603",
+                                    "name": "Ricciardo, Daniel",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:11249344",
+                                "name": "Norris, Lando",
+                                "probability": 1.36,
+                                "competitor": {
+                                    "id": "sr:competitor:495898",
+                                    "name": "Norris, Lando",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:7583457",
+                                "name": "Sainz Jr, Carlos",
+                                "probability": 0.93,
+                                "competitor": {
+                                    "id": "sr:competitor:189029",
+                                    "name": "Sainz Jr, Carlos",
+                                    "gender": "male",
+                                    "nationality": "Spain",
+                                    "country_code": "ESP"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:16360332",
+                                "name": "Tsunoda, Yuki",
+                                "probability": 0.54,
+                                "competitor": {
+                                    "id": "sr:competitor:764646",
+                                    "name": "Tsunoda, Yuki",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:24246",
+                                "name": "Alonso, Fernando",
+                                "probability": 0.53,
+                                "competitor": {
+                                    "id": "sr:competitor:4521",
+                                    "name": "Alonso, Fernando",
+                                    "gender": "male",
+                                    "nationality": "Spain",
+                                    "country_code": "ESP"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:9276623",
+                                "name": "Stroll, Lance",
+                                "probability": 0.41,
+                                "competitor": {
+                                    "id": "sr:competitor:302866",
+                                    "name": "Stroll, Lance",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:893501",
+                                "name": "Vettel, Sebastian",
+                                "probability": 0.3,
+                                "competitor": {
+                                    "id": "sr:competitor:7610",
+                                    "name": "Vettel, Sebastian",
+                                    "gender": "male",
+                                    "nationality": "Germany",
+                                    "country_code": "DEU"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:7569594",
+                                "name": "Ocon, Esteban",
+                                "probability": 0.17,
+                                "competitor": {
+                                    "id": "sr:competitor:184751",
+                                    "name": "Ocon, Esteban",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:9590756",
+                                "name": "Giovinazzi, Antonio",
+                                "probability": 0.16,
+                                "competitor": {
+                                    "id": "sr:competitor:222584",
+                                    "name": "Giovinazzi, Antonio",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:24244",
+                                "name": "Raikkonen, Kimi",
+                                "probability": 0.16,
+                                "competitor": {
+                                    "id": "sr:competitor:4538",
+                                    "name": "Raikkonen, Kimi",
+                                    "gender": "male",
+                                    "nationality": "Finland",
+                                    "country_code": "FIN"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:10326516",
+                                "name": "Russell, George",
+                                "probability": 0.04,
+                                "competitor": {
+                                    "id": "sr:competitor:391432",
+                                    "name": "Russell, George",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:10973445",
+                                "name": "Latifi, Nicholas",
+                                "probability": 0.03,
+                                "competitor": {
+                                    "id": "sr:competitor:447677",
+                                    "name": "Latifi, Nicholas",
+                                    "gender": "male"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:15770199",
+                                "name": "Schumacher, Mick",
+                                "probability": 0.03,
+                                "competitor": {
+                                    "id": "sr:competitor:568799",
+                                    "name": "Schumacher, Mick",
+                                    "gender": "male",
+                                    "nationality": "Germany",
+                                    "country_code": "DEU"
+                                }
+                            },
+                            {
+                                "id": "sr:competitor:16344920",
+                                "name": "Mazepin, Nikita",
+                                "probability": 0.03,
+                                "competitor": {
+                                    "id": "sr:competitor:764216",
+                                    "name": "Mazepin, Nikita",
+                                    "gender": "male"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
