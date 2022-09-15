@@ -1,11 +1,12 @@
 import './App.css';
-import apiRequest from './api/api';
+import RaceInfo from './api/RaceInfo';
 
 function App() {
   return (
     <div className="App">
 
-      <button className='request-button' onClick={apiRequest}>request</button>
+      {/* <button className='request-button' onClick={ApiRequest}>request</button> */}
+      <RaceInfo />
     </div>
   );
 }

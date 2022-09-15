@@ -2,9 +2,16 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .request-button {
   height: 50px;
   width: 100px;
+}
+
+.odds-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;  
 }
