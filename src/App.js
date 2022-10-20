@@ -1,18 +1,23 @@
 import './App.css';
 import RaceInfo from './components/RaceInfo';
-import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar'; 
+import TopNav from './components/NavBar.js'
+
 
 function App() {
-  const {
-    state,
-    oddsList,
-    racerList
-  } = RaceInfo();
+  // const {
+  //   state,
+  //   oddsList,
+  //   racerList
+  // } = RaceInfo();
 
   return (
     <div className="App">
-      <SearchBar />
-      {/* <RaceInfo /> */}
+      <TopNav />
+      <div className="content-body">
+        <SearchBar />
+        <RaceInfo />
+      </div>
     </div>
   );
 }
