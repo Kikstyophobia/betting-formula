@@ -17,6 +17,7 @@ function App() {
       <div className="content-body">
         <SearchBar />
         <RaceInfo />
+        <button className='bet-button'>Place Bet</button>
       </div>
     </div>
   );

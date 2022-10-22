@@ -49,7 +49,7 @@ export default function SearchBar() {
               srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
               alt=""
             />
-            {option.label} Grand Prix
+            {option.label}
           </Box>
         )}
         renderInput={(params) => (
@@ -73,55 +73,55 @@ export default function SearchBar() {
 const countries = [
   {
     code: 'AE',
-    label: 'Abu Dhabi'
+    label: 'Abu Dhabi Grand Prix'
   },
-  // { code: 'AT', label: 'Austrian'},
-  // { code: 'AT', label: 'Styrian'},
-  // {
-  //   code: 'AU',
-  //   label: 'Australian',
-  //   suggested: true,
-  // },
-  // { code: 'AZ', label: 'Azerbaijan'},
-  // { code: 'BE', label: 'Belgian'},
-  // { code: 'BH', label: 'Bahrain'},
-  // { code: 'BR', label: 'Brazilian'},
-  // {
-  //   code: 'CA',
-  //   label: 'Canada',
-  // },
-  // { code: 'CN', label: 'Chinese'},
-  // {
-  //   code: 'DE',
-  //   label: 'Germany',
-  //   phone: '49',
-  // },
-  // { code: 'ES', label: 'Spanish'},
-  // {
-  //   code: 'FR',
-  //   label: 'French',
-  // },
-  // { code: 'GB', label: 'British'},
-  // { code: 'HU', label: 'Hungarian'},
-  // { code: 'IT', label: 'Italian'},
-  // { code: 'IT', label: 'Emilia Romagna'},
-  // {
-  //   code: 'JP',
-  //   label: 'Japanese',
-  // },
-  // { code: 'MC', label: 'Monaco'},
-  // { code: 'MX', label: 'Mexican'},
-  // { code: 'NL', label: 'Dutch'},
-  // { code: 'PT', label: 'Portuguese'},
-  // { code: 'QA', label: 'Qatar'},
+  { code: 'AT', label: 'Austrian Grand Prix'},
+  { code: 'AT', label: 'Styrian Grand Prix'},
+  {
+    code: 'AU',
+    label: 'Australian Grand Prix',
+    suggested: true,
+  },
+  { code: 'AZ', label: 'Azerbaijan Grand Prix'},
+  { code: 'BE', label: 'Belgian Grand Prix'},
+  { code: 'BH', label: 'Bahrain Grand Prix'},
+  { code: 'BR', label: 'Brazilian Grand Prix'},
+  {
+    code: 'CA',
+    label: 'Canada',
+  },
+  { code: 'CN', label: 'Chinese Grand Prix'},
+  {
+    code: 'DE',
+    label: 'Germany',
+    phone: '49',
+  },
+  { code: 'ES', label: 'Spanish Grand Prix'},
+  {
+    code: 'FR',
+    label: 'French',
+  },
+  { code: 'GB', label: 'British Grand Prix'},
+  { code: 'HU', label: 'Hungarian Grand Prix'},
+  { code: 'IT', label: 'Italian Grand Prix'},
+  { code: 'IT', label: 'Emilia Romagna Grand Prix'},
+  {
+    code: 'JP',
+    label: 'Japanese Grand Prix',
+  },
+  { code: 'MC', label: 'Monaco Grand Prix'},
+  { code: 'MX', label: 'Mexican Grand Prix'},
+  { code: 'NL', label: 'Dutch Grand Prix'},
+  { code: 'PT', label: 'Portuguese Grand Prix'},
+  { code: 'QA', label: 'Qatar Grand Prix'},
 
-  // { code: 'RU', label: 'Russian'},
-  // { code: 'SA', label: 'Saudi Arabian'},
+  { code: 'RU', label: 'Russian Grand Prix'},
+  { code: 'SA', label: 'Saudi Arabian Grand Prix'},
 
-  // { code: 'SG', label: 'Singapore'},
-  // { code: 'TR', label: 'Turkish'},
-  // {
-  //   code: 'US',
-  //   label: 'United States',
-  // }
+  { code: 'SG', label: 'Singapore Grand Prix'},
+  { code: 'TR', label: 'Turkish Grand Prix'},
+  {
+    code: 'US',
+    label: 'United States Grand Prix',
+  }
 ]

@@ -17,23 +17,15 @@
   width: 100px;
 }
 
+.race {
+  font-size: xx-large;
+}
+
 .odds-list {
   display: flex;
   justify-content: center;
-  flex-direction: row;  
+  flex-direction: row;
   gap: 20px;
-}
-
-.odds {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.racers {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .nav-main {
@@ -47,4 +39,32 @@
   width: 100%;
   height: 20px;
   padding: 1.5em 1.5em;
+}
+
+.grid-container {
+  border: #e10600 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  grid-auto-rows: 40px;
+  grid-row-gap: 10px;
+  grid-column-gap: 25px;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.grid-name {
+  width: 150px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.bet-button {
+  font-size: 25px;
+  width: 150px;
 }
