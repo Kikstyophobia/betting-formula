@@ -18,7 +18,7 @@
 }
 
 .race {
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .odds-list {
@@ -37,8 +37,19 @@
   z-index: 999;
   top: 0;
   width: 100%;
+  min-width: 900px;
   height: 20px;
   padding: 1.5em 1.5em;
+}
+
+.app-name {
+  font-size: 2em;
+}
+
+.balance {
+  font-size: 1.5em;
+  position: absolute;
+  right: 2.5em;
 }
 
 .grid-container {

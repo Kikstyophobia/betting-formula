@@ -1,23 +1,64 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import RaceInfo from './RaceInfo';
 
 export default function SearchBar() {
 
 
-  const [value, setValue] = useState('Select Amount');
-  const [inputValue, setInputValue] = useState('');
+  // const [value, setValue] = useState('Select Amount');
+  // const [inputValue, setInputValue] = useState('');
+  const [driver, setDriver] = useState();
+  const [driverInput, setDriverInput] = useState('');
 
-  const options = ['$20', '$50', '$100', '$250', '$500', '$1000'];
+  const [driverList, setDriverList] = useState([]);
 
+  const { 
+    racerList
+  } = RaceInfo();
+  console.log("test",racerList)
 
+  // const options = ['$20', '$50', '$100', '$250', '$500', '$1000'];
+  // let racers = ['a'];
+
+  // setDriverList(state.racerList)
+
+  // console.log("state racers",state.racerList);
+  // const findRacers = state.state.racers.map(data => {
+  //   setDriverList(data.name)
+  // });
+  
+
+  useEffect(() => {
+    // console.log("HELLO", state)
+    // const findRacers = state.state.map(data => {
+    //   setDriverList(data)
+    //   console.log("LIST",data);
+      // console.log(driverList);
+    // })
+    // console.log("test", state.racerList)
+    // setDriverList(state)
+    console.log("searchbar", racerList)
+  }, 
+  // [setDriverList]
+  []
+  )
+
+  // console.log("driverlist", driverList);
+
+  // state.racers.map(data => {
+  //   return (
+  //     <p>{data.name}</p>
+  //   )
+  // })
 
 
   return (
     <>
       <div className='search-area'>
 
+        {/* COUNTRY SELECT
         <div className='race-search'>
           <Autocomplete
             id="country-select-demo"
@@ -48,9 +89,29 @@ export default function SearchBar() {
               />
             )}
           />
+        </div> */}
+
+        {/* DRIVER SELECT */}
+        <div className='driver-select'>
+          <br />
+          <Autocomplete
+            value={driver}
+            onChange={(event, newValue) => {
+              setDriver(newValue);
+            }}
+            inputValue={driverInput}
+            onInputChange={(event, newInputValue) => {
+              setDriverInput(newInputValue);
+            }}
+            id="controllable-states-demo"
+            options={racerList}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Choose a driver" />}
+          />
         </div>
 
-        <div className='bet-select'>
+        {/* BET SELECT */}
+        {/* <div className='bet-select'>
           <br />
           <Autocomplete
             value={value}
@@ -67,9 +128,9 @@ export default function SearchBar() {
             renderInput={(params) => <TextField {...params} label="Bet Amount" />}
           />
           <button className='bet-button'>Place Bet</button>
-        </div>
-        <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-        <div>{`inputValue: '${inputValue}'`}</div>
+        </div> */}
+        {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+        <div>{`inputValue: '${inputValue}'`}</div> */}
       </div>
     </>
   );

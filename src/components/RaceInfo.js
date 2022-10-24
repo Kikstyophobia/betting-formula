@@ -129,8 +129,8 @@ export default function RaceInfo() {
         setState(prev => (
           { ...prev, stage: data.data.stage.parents[0].description, racers: data.data.probabilities.markets[1].outcomes, probability: data.data.probabilities.markets[1].outcomes }
         ))
-        console.log("data", data);
-        console.log("state", state);
+        // console.log("data", data);
+        // console.log("state", state);
       })
       .catch(err => {
         console.log(err);
@@ -162,33 +162,20 @@ export default function RaceInfo() {
     }
 
     return (
-        <span className='grid-item'>
-          <div className='grid-name'>
-            {data.name}
-          </div>
-          <div className='grid-odds'>
-            {convertedOdds}
-          </div>
-        </span>
+      <p>{convertedOdds}</p>
+    )
+  })
+
+  const racerList = state.racers.map(data => {
+    return (
+      data.name
     )
   })
 
 
-  // return {
-  //   state,
-  //   oddsList,
-  //   racerList
-  // }
-
-  return (
-    <>
-      <p className='race'>{state.stage}</p>
-      <div className='odds-list'>
-        <div className='grid-container'>
-          {/* {racerList} */}
-          {oddsList}
-        </div>
-      </div>
-    </>
-  )
+  return {
+    state,
+    oddsList,
+    racerList
+  }
 }
