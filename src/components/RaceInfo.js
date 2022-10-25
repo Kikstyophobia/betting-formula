@@ -138,15 +138,6 @@ export default function RaceInfo() {
 
   }, [])
 
-
-  // maps through racers
-  // const racerList = state.racers.map(data => {
-  //   return (
-  //     <div className='grid-item'>{data.name}</div>
-  //   )
-  // })
-
-
   // maps through win probablities of each racer  
   // and converts win % probability to money line odds
   const oddsList = state.probability.map(data => {
@@ -166,6 +157,7 @@ export default function RaceInfo() {
     )
   })
 
+  // maps through racers
   const racerList = state.racers.map(data => {
     return (
       data.name

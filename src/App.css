@@ -75,6 +75,13 @@
   justify-content: flex-start;
 }
 
+.bet-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-area {
   display: flex;
   flex-direction: column;
@@ -89,8 +96,9 @@
   width: 150px;
 }
 
-.bet-select {
+.bet-select, .driver-select {
   display: flex;
   flex-direction: row;
   gap: 5px;
 }
+
