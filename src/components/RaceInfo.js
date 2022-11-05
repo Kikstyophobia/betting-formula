@@ -2,11 +2,12 @@ import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function RaceInfo() {
-  const [state, setState] = useState({
-    stage: "",
-    racers: [],
-    probability: []
-  });
+  // const [state, setState] = useState({
+  //   stage: "",
+  //   racers: [],
+  //   probability: [],
+  //   races: []
+  // });
 
   const stages = [
     {
@@ -122,21 +123,90 @@ export default function RaceInfo() {
   // const stage = "686488";
 
   // API call via betting-formula API for a given race
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios.get(`/api/686938`)
-      .then(data => {
-        setState(prev => (
-          { ...prev, stage: data.data.stage.parents[0].description, racers: data.data.probabilities.markets[1].outcomes, probability: data.data.probabilities.markets[1].outcomes }
-        ))
-        // console.log("data", data);
-        // console.log("state", state);
-      })
+  //   Promise.allSettled([
+  //     axios.get(`/api/686938`)
+  //     // axios.get(`/api/season/937183`)
+  //   ])
+  //     .then(prev => {
+  //       setState(
+  //         // { ...prev, stage: all[0].data.stage.parents[0].description, racers: all[0].data.probabilities.markets[1].outcomes, probability: all[0].data.probabilities.markets[1].outcomes, races: all[1].data}
+  //         { ...prev, stage: data[0].data.stage.parents[0].description, racers: data[0].data.probabilities.markets[1].outcomes, probability: data[0].data.probabilities.markets[1].outcomes }
+  //         // { stage: data[0].data.stage.parents[0].description, racers: data[0].data.probabilities.markets[1].outcomes, probability: data[0].data.probabilities.markets[1].outcomes }
+  //       )
+  //       console.log("data 0", data);
+  //       console.log(data[1]);
+  //       // console.log("data 1", data[1]);
+  //       // console.log("data", data[1]);
+  //       // console.log("data 0", all[0]);
+  //       // console.log("data 1", all[1]);
+  //     })
+  //     // .then(console.log("state", state))
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+
+  //   const requestOne = axios.get(`/api/686938`);
+  //   // const requestTwo = axios.get(`/api/season/937183`);
+
+
+  //   axios.all([requestOne]).then(axios.spread((...responses) => {
+  //     const responseOne = responses[0]
+  //     const responseTwo = responses[1]
+  //     console.log(responses);
+  //     console.log("1", requestOne);
+  //     // console.log("2", requestTwo);
+  //     // use/access the results 
+  //   })).catch(errors => {
+  //     // react on errors.
+  //     console.log(errors);
+  //   })
+
+  // }, [])
+
+
+  useEffect(() => {
+    const endpoints = [`/api/686938`, `/api/season/686252`];
+    // console.log("inside useffect");
+    Promise.all(endpoints.map((endpoint) => axios.get(endpoint))).then((values) => {
+      // Promise.all(endpoints.map((endpoint) => axios.get(endpoint))).then((valuesOne, valuesTwo) => {
+      setState(prev => (
+        { ...prev, stage: values[0].data.stage.parents[0].description, racers: values[0].data.probabilities.markets[1].outcomes, probability: values[0].data.probabilities.markets[1].outcomes }
+      ))
+      // console.log("inside");
+      // console.log("values", values);
+      // console.log("values", valuesTwo);
+
+    })
       .catch(err => {
         console.log(err);
       })
 
   }, [])
+
+  // useEffect(() => {
+
+  //   const fetchData = async () => {
+  //     const race = await fetch(`/api/686938`)
+  //     // const season = await fetch(`/api/season/686252`)
+  //     const json = await [race.json()];
+
+  //     setState(prev => (
+  //       // { ...prev, stage: json[0].data.stage.parents[0].description, racers: json[0].data.probabilities.markets[1].outcomes, probability: json[0].data.probabilities.markets[1].outcomes }
+  //       {stage: "works man"}
+  //     ))
+
+  //     console.log("json", json);
+  //     console.log("state", state);
+  //     // console.log("data", data1);
+  //   }
+  //   fetchData()
+  //     .catch("ERROR");
+
+  // }, [])
+
+
 
   // maps through win probablities of each racer  
   // and converts win % probability to money line odds
@@ -153,7 +223,7 @@ export default function RaceInfo() {
     }
 
     return (
-      <p>{convertedOdds}</p>
+      convertedOdds
     )
   })
 

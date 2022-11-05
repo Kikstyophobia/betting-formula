@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  /* background-color: #15151e; */
 }
 
 .content-body {
@@ -21,12 +22,12 @@
   font-size: 2em;
 }
 
-.odds-list {
+/* .odds-list {
   display: flex;
   justify-content: center;
   flex-direction: row;
   gap: 20px;
-}
+} */
 
 .nav-main {
   display: flex;
@@ -53,26 +54,41 @@
 }
 
 .grid-container {
+  display: flex;
+  justify-content: center;
   border: #e10600 1px solid;
   border-radius: 10px;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 220px);
+  grid-template-columns: repeat(4, 180px);
   grid-auto-rows: 40px;
-  grid-row-gap: 10px;
-  grid-column-gap: 25px;
+  /* grid-row-gap: 10px; */
+  /* grid-column-gap: 25px; */
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
 }
 
 .grid-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .grid-name {
   width: 150px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+}
+
+.grid-odds {
+  /* width: 150px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: flex-start; */
 }
 
 .bet-box {
@@ -94,11 +110,12 @@
 .bet-button {
   font-size: 1.5em;
   width: 150px;
+  /* border-radius: 5px; */
 }
 
-.bet-select, .driver-select {
+.bet-select,
+.driver-select {
   display: flex;
   flex-direction: row;
   gap: 5px;
 }
-

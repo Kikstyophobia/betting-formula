@@ -1,18 +1,13 @@
 import { React, useState } from 'react';
-// import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import RaceInfo from './RaceInfo';
 
-export default function SearchBar() {
-  const [bet, setBet] = useState('');
-  const [betInput, setBetInput] = useState('');
+export default function SearchBar(state) {
+  const [bet, setBet] = useState();
+  const [betInput, setBetInput] = useState();
   const [driver, setDriver] = useState();
-  const [driverInput, setDriverInput] = useState('');
-
-  const {
-    racerList
-  } = RaceInfo();
+  const [driverInput, setDriverInput] = useState();
 
   // console.log("test", racerList)
 
@@ -22,8 +17,8 @@ export default function SearchBar() {
     <>
       <div className='search-area'>
 
-        {/* COUNTRY SELECT
-        <div className='race-search'>
+        {/* COUNTRY SELECT */}
+        {/* <div className='race-search'>
           <Autocomplete
             id="country-select-demo"
             sx={{ width: 300 }}
@@ -69,14 +64,14 @@ export default function SearchBar() {
                 setDriverInput(newInputValue);
               }}
               id="controllable-states-demo"
-              options={racerList}
+              options={state.racerList}
               sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} label="Choose a driver" />}
             />
           </div>
 
           {/* BET SELECT */}
-          <div className='bet-select'>
+          {/* <div className='bet-select'>
             <br />
             <Autocomplete
               value={bet}
@@ -93,7 +88,7 @@ export default function SearchBar() {
               renderInput={(params) => <TextField {...params} label="Bet Amount" />}
             />
             <button className='bet-button'>Place Bet</button>
-          </div>
+          </div> */}
         </div>
         {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
         {/* <div>{`inputValue: '${inputValue}'`}</div> */}
