@@ -9,7 +9,11 @@ export default function SearchBar(state) {
   const [driver, setDriver] = useState();
   const [driverInput, setDriverInput] = useState();
 
-  // console.log("test", racerList)
+  const racerList = state.racerList.map(data => {
+    return (
+      data.name
+    )
+  })
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
 
@@ -64,14 +68,14 @@ export default function SearchBar(state) {
                 setDriverInput(newInputValue);
               }}
               id="controllable-states-demo"
-              options={state.racerList}
+              options={racerList}
               sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} label="Choose a driver" />}
             />
           </div>
 
           {/* BET SELECT */}
-          {/* <div className='bet-select'>
+          <div className='bet-select'>
             <br />
             <Autocomplete
               value={bet}
@@ -88,7 +92,7 @@ export default function SearchBar(state) {
               renderInput={(params) => <TextField {...params} label="Bet Amount" />}
             />
             <button className='bet-button'>Place Bet</button>
-          </div> */}
+          </div>
         </div>
         {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div> */}
         {/* <div>{`inputValue: '${inputValue}'`}</div> */}

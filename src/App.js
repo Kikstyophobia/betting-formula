@@ -7,7 +7,7 @@ import RaceOdds from './components/RaceOdds'
 import getInfo from './api/getInfo';
 
 function App() {
-  const { getRaceInfo, getSeasonInfo } = getInfo()
+  const { getRaceInfo, getSeasonRaces } = getInfo();
   const [state, setState] = useState({
     stage: "",
     racers: [],
@@ -15,16 +15,37 @@ function App() {
     races: []
   });
 
-  console.log("app state", state);
-
   useEffect(() => {
     getRaceInfo()
       .then(prev => {
         setState(
-          { ...prev, stage: prev.data.stage.parents[0].description, racers: prev.data.probabilities.markets[1].outcomes, probability: prev.data.probabilities.markets[1].outcomes }
+          {
+            ...prev,
+            stage: prev.data.stage.parents[0].description,
+            racers: prev.data.probabilities.markets[1].outcomes,
+            probability: prev.data.probabilities.markets[1].outcomes
+          }
         )
       })
+
+    // getSeasonRaces()
+    //   .then(data => {
+    //     console.log("ASS", data);
+    //     setState({...data, 
+    //       races: data.data.stages.description})
+    //   })
+
   }, [])
+
+  const displayRaceOdds = state.probability.map(odds => {
+    return (
+      <RaceOdds
+        key={odds.name}
+        probabilities={odds.probability}
+        racerList={odds.name}
+      />
+    )
+  })
 
   return (
     <div className="App">
@@ -32,9 +53,10 @@ function App() {
       <main>
         <div className="content-body">
           <p className='race'>{state.stage}</p>
-
-          <RaceOdds probabilities={state.probability} racerList={state.racers} />
-          <SearchBar racerList={state.racers}/>
+          <div className='grid-container'>
+            {displayRaceOdds}
+          </div>
+          {/* <SearchBar racerList={state.racers} /> */}
 
         </div>
       </main>
