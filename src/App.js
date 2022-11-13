@@ -1,41 +1,44 @@
 import { React, useEffect, useState } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar';
+// import SearchBar from './components/SearchBar';
 import TopNav from './components/NavBar.js'
 import RaceOdds from './components/RaceOdds'
 // import CircularIndeterminate from './components/Loading';
-import getInfo from './api/getInfo';
+import useInfo from './api/useInfo';
 
 function App() {
-  const { getRaceInfo, getSeasonRaces } = getInfo();
+  // const { state } = useInfo();
+  const { getRaceInfo, getSeasonRaces } = useInfo();
   const [state, setState] = useState({
     stage: "",
     racers: [],
-    probability: [],
-    races: []
+    probability: []
   });
+  const [races, setRaces] = useState([])
 
   useEffect(() => {
-    getRaceInfo()
-      .then(prev => {
-        setState(
-          {
-            ...prev,
-            stage: prev.data.stage.parents[0].description,
-            racers: prev.data.probabilities.markets[1].outcomes,
-            probability: prev.data.probabilities.markets[1].outcomes
-          }
-        )
-      })
+    // getRaceInfo()
+    //   .then(prev => {
+    //     setState(
+    //       {
+    //         ...prev,
+    //         stage: prev.data.stage.parents[0].description,
+    //         racers: prev.data.probabilities.markets[1].outcomes,
+    //         probability: prev.data.probabilities.markets[1].outcomes
+    //       }
+    //     )
+    //   })
 
     // getSeasonRaces()
-    //   .then(data => {
-    //     console.log("ASS", data);
-    //     setState({...data, 
-    //       races: data.data.stages.description})
+    //   .then(prev => {
+    //     setRaces(
+    //       { ...prev, races: prev.data.stages.description })
+    //     console.log("state", state);
+    //     console.log("races", races);
     //   })
 
   }, [])
+  // console.log("races outside", races);
 
   const displayRaceOdds = state.probability.map(odds => {
     return (
@@ -56,7 +59,7 @@ function App() {
           <div className='grid-container'>
             {displayRaceOdds}
           </div>
-          {/* <SearchBar racerList={state.racers} /> */}
+          {/* {<SearchBar racerList={state.racers} races={state.races} />} */}
 
         </div>
       </main>

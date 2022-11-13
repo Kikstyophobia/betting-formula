@@ -20,25 +20,3 @@ export default function RaceOdds(props) {
     </div>
   )
 }
-
-
-// maps though racer win odds for a given race
-
-
-// return (
-//   <div className='grid-container'>
-
-//     {/* <div className='grid'> */}
-//     <>
-//       {racerList}
-//       {oddsList}
-//     </>
-//     {/* </div> */}
-
-//     {/* <div className='grid-odds'> */}
-//     {/* </div> */}
-
-//   </div>
-// )
-
-// }

@@ -15,14 +15,21 @@ export default function SearchBar(state) {
     )
   })
 
+  // console.log("state", state.races.data.stages);
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
+  const countries = state.races.data.stages.map(array => {
+    return (
+      <p>{array.description}</p>
+    )
+  });
 
   return (
     <>
+      {/* {countries} */}
       <div className='search-area'>
 
         {/* COUNTRY SELECT */}
-        {/* <div className='race-search'>
+        <div className='race-search'>
           <Autocomplete
             id="country-select-demo"
             sx={{ width: 300 }}
@@ -52,7 +59,7 @@ export default function SearchBar(state) {
               />
             )}
           />
-        </div> */}
+        </div>
 
         <div className='bet-box'>
           {/* DRIVER SELECT */}
