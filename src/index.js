@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { initializeApp } from 'firebase/app';
 import {
@@ -15,7 +14,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
-import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAcLKceqwZYyHUo1oEF7-W0jAobBbLEcHY",
@@ -34,7 +32,7 @@ const db = getFirestore(app);
 
 // collection reference 
 const colRef = collection(db, 'races');
-const colRefSeasons = collection(db, 'test2022')
+const colRefSeasons = collection(db, '2022')
 
 // get collection data
 getDocs(colRef)
@@ -55,7 +53,6 @@ const addSeasonInfo = async () => {
     axios.get(`/api/season/937183`)
         .then(value => {
             value.data.stages.forEach((data) => {
-                const description = data.description;
                 const raceId = data.stages[4].id
                 setDoc(doc(db, "2022", `${raceId}`), {
                     data: data
@@ -69,19 +66,49 @@ const addSeasonInfo = async () => {
 
 // adds probability to Firestore database via raceId
 const addProbability = async () => {
-    axios.get(`/api/937263`)
+    axios.get(`/api/943423`)
         .then(value => {
-            console.log(value.data.probabilities.markets[1].outcomes);
+            console.log(value.data.probabilities.markets[0].outcomes);
             const raceId = value.data.stage.id;
             updateDoc(doc(db, "2022", `${raceId}`), {
-                probabilities: value.data.probabilities.markets[1].outcomes
+                probabilities: value.data.probabilities.markets[0].outcomes
             })
         })
 }
 
-addProbability();
+// addProbability();
 
 
+// sets the probabilities for a cancelled race to NULL
+function addCancelledRaceProbabilities() {
+    let raceId = "sr:stage:941743"
+    updateDoc(doc(db, "2022", `${raceId}`), {
+        probabilities: null
+    })
+}
+
+// addCancelledRace();
+
+
+// adds race results per driver to Firestore database via raceId
+const addRaceResult = async () => {
+    axios.get(`/api/result/943143`)
+        .then(value => {
+            let raceId = value.data.stage.id;
+            console.log("value", value.data);
+            if (value.data.stage.status === "Cancelled") {
+                updateDoc(doc(db, "2022", `${raceId}`), {
+                    results: value.data.stage
+                })
+            } else {
+                updateDoc(doc(db, "2022", `${raceId}`), {
+                    results: value.data.stage.competitors
+                })
+            }
+        })
+}
+
+// addRaceResult();
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
