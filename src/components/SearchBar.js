@@ -9,19 +9,20 @@ export default function SearchBar(state) {
   const [driver, setDriver] = useState();
   const [driverInput, setDriverInput] = useState();
 
-  const racerList = state.racerList.map(data => {
+  const racerList = state.racers.map(data => {
     return (
       data.name
     )
   })
 
-  // console.log("state", state.races.data.stages);
+  // console.log(state.racers);
+
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
-  const countries = state.races.data.stages.map(array => {
-    return (
-      <p>{array.description}</p>
-    )
-  });
+  // const countries = state.races.data.stages.map(array => {
+  //   return (
+  //     <p>{array.description}</p>
+  //   )
+  // });
 
   return (
     <>
@@ -29,7 +30,7 @@ export default function SearchBar(state) {
       <div className='search-area'>
 
         {/* COUNTRY SELECT */}
-        <div className='race-search'>
+        {/* <div className='race-search'>
           <Autocomplete
             id="country-select-demo"
             sx={{ width: 300 }}
@@ -59,7 +60,7 @@ export default function SearchBar(state) {
               />
             )}
           />
-        </div>
+        </div> */}
 
         <div className='bet-box'>
           {/* DRIVER SELECT */}

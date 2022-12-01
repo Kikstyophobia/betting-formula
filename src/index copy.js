@@ -30,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // initialize services
-export const db = getFirestore(app);
+const db = getFirestore(app);
 
 // collection reference 
 const colRef = collection(db, 'races');
