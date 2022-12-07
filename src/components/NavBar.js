@@ -1,7 +1,7 @@
-import React from 'react';
+import { React, useState } from 'react';
 
 export default function TopNav() {
-  let balance = 1000;
+  const [balance, setBalance] = useState(1000);
 
   return (
     <span className='nav-main'>

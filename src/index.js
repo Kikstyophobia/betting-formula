@@ -45,7 +45,6 @@ onSnapshot(q, (snapshot) => {
     snapshot.docs.forEach((doc) => {
         races.push({ ...doc.data(), id: doc.id })
     })
-    console.log("realtime data", races);
 })
 
 
