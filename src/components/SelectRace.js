@@ -8,20 +8,28 @@ import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 export default function SelectRace() {
   const [seasonRaces, setSeasonRaces] = useContext(SeasonContext);
   // const [currentRace, setCurrentRace] = useContext(CurrentRaceContext);
-  // const [races, setRaces] = useState([])
+  const [race, setRace] = useState("no race")
 
   const races = seasonRaces.map(race => {
     return race.description;
   })
 
+  useEffect(() => {
+    console.log(race);
+  }, [race])
+
+  function clickEvent(e) {
+    setRace(document.getElementById('country-select-demo').value)
+  }
+
+
   return (
     <div className='race-search'>
       <Autocomplete
         id="country-select-demo"
-        sx={{ width: 300 }}
+        sx={{ width: 350 }}
         options={races}
         autoHighlight
-        // onChange={setCurrentRace("asdf")}
         // getOptionLabel={(option) => option.label}
         // renderOption={(props, option) => (
         //   <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -37,6 +45,7 @@ export default function SelectRace() {
         // )}
         renderInput={(params) => (
           <TextField
+            id='race-field'
             {...params}
             label="Choose a race"
             inputProps={{
@@ -46,6 +55,7 @@ export default function SelectRace() {
           />
         )}
       />
+      <button onClick={clickEvent}>SELECT RACE</button>
     </div>
   )
 }

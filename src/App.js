@@ -22,7 +22,7 @@ function App() {
 
   const [seasonRaces, setSeasonRaces] = useState();
   // const [races, setRaces] = useState([]);
-  const [currentRace, setCurrentRace] = useState();
+  // const [currentRace, setCurrentRace] = useState();
 
   useEffect(() => {
     getSeason();
