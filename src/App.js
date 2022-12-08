@@ -24,12 +24,6 @@ function App() {
     getSeason();
   }, [])
 
-  useEffect(() => {
-    // console.log("app", race);
-    // console.log(seasonRaces);
-  }, [seasonRaces])
-
-
   function getSeason() {
     const seasonCollectionRef = collection(db, '2022');
 
@@ -58,12 +52,11 @@ function App() {
               {/* Race Select */}
               {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
               <div className='grid-container'>
-                {/* {race ? <RaceOdds /> : <p>Select a Race</p>} */}
                 {seasonRaces && race ? <RaceOdds /> : <p>Select a race</p>}
               </div>
 
 
-              <SearchBar racers={state.racers} />
+              {seasonRaces && race ? <SearchBar /> : <p>Welcome to Betting Formula! Please select a race.</p>}
 
             </div>
           </CurrentRaceContext.Provider>

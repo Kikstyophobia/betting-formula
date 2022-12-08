@@ -1,5 +1,4 @@
 import { React, useState, useContext, useEffect } from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { SeasonContext } from '../contexts/SeasonContext';
@@ -18,9 +17,8 @@ export default function SelectRace() {
   }, [race])
 
   function clickEvent() {
-    setRace(document.getElementById('country-select-demo').value)
+    setRace(document.getElementById('country-select-demo').value);
   }
-
 
   return (
     <div className='race-search'>

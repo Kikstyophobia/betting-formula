@@ -23,24 +23,17 @@ export default function RaceOdds() {
         }
       })
     })
-  }, [race])
+  }, [race]);
 
   useEffect(() => {
     console.log("probabilities:", probabilities);
-  }, [probabilities])
-
-  // Magyar Nagydij 2022
-  // Belgian 
-  // dutch
-  // italia
-  // go through all races
-
+  }, [probabilities]);
 
 
   // maps through win probablities of each racer per race
   // and converts win % probability to money line odds
   const displayOdds = probabilities.map(data => {
-    let odds = data.probability
+    let odds = data.probability;
     let convertedOdds = "";
 
     if (odds > 50) {
@@ -50,13 +43,13 @@ export default function RaceOdds() {
     } else {
       convertedOdds = 0;
     }
-    return convertedOdds
+    return convertedOdds;
   })
 
 
   // maps through probabilities for racer names to pair with odds
   const displayRacers = probabilities.map(data => {
-    return data.name
+    return data.name;
   })
 
 
