@@ -4,18 +4,22 @@ import { db } from '../index';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { SeasonContext } from '../contexts/SeasonContext';
 
-export default function RaceOdds(props) {
-  const [probabilities, setProbabilities] = useState();
+export default function RaceOdds() {
+  const [probabilities, setProbabilities] = useState([]);
   const race = useContext(CurrentRaceContext);
   const seasonRaces = useContext(SeasonContext);
+  const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
       doc.map(data => {
         if (race[0] === data.description) {
-          // setprobabilities(data.)
-          console.log(data);
-          setProbabilities(data.probabilities)
+          if (data.probabilities === null) {
+            setCancelled(true);
+          } else {
+            setCancelled(false);
+            setProbabilities(data.probabilities);
+          }
         }
       })
     })
@@ -25,6 +29,11 @@ export default function RaceOdds(props) {
     console.log("probabilities:", probabilities);
   }, [probabilities])
 
+  // Magyar Nagydij 2022
+  // Belgian 
+  // dutch
+  // italia
+  // go through all races
 
 
 
@@ -44,6 +53,8 @@ export default function RaceOdds(props) {
     return convertedOdds
   })
 
+
+  // maps through probabilities for racer names to pair with odds
   const displayRacers = probabilities.map(data => {
     return data.name
   })
@@ -51,8 +62,8 @@ export default function RaceOdds(props) {
 
   return (
     <div className='odds-item'>
-      <p className='grid-item'>{displayRacers}</p>
-      <p className='grid-item'>{displayOdds}</p>
+      <div className='grid-item'>{!cancelled ? displayRacers : <p id='cancelled'>Race cancelled, no information available.</p>}</div>
+      <div className='grid-item'>{!cancelled ? displayOdds : <p></p>}</div>
     </div>
   )
 }

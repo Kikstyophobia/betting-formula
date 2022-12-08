@@ -9,14 +9,14 @@ const useInfo = () => {
     return raceInfo;
   }
 
-  // const getSeasonRaces = async () => {
-  //   const seasonRaces = await axios.get(`/api/season/686252`);
-  //   return seasonRaces;
-  // }
+  const getSeasonRaces = async () => {
+    const seasonRaces = await axios.get(`/api/season/686252`);
+    return seasonRaces;
+  }
 
   return {
     getRaceInfo,
-    // getSeasonRaces
+    getSeasonRaces
   }
 
 }

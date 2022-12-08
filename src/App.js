@@ -1,9 +1,6 @@
-import { React, useEffect, useState, createContext } from 'react';
+import { React, useEffect, useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import TopNav from './components/NavBar.js'
 import RaceOdds from './components/RaceOdds'
 import useInfo from './api/useInfo';
@@ -22,8 +19,6 @@ function App() {
 
   const [race, setRace] = useState();
   const [seasonRaces, setSeasonRaces] = useState();
-  // const [races, setRaces] = useState([]);
-  // const [currentRace, setCurrentRace] = useState();
 
   useEffect(() => {
     getSeason();
@@ -49,31 +44,6 @@ function App() {
       .catch(error => console.log(error.message))
   }
 
-  // useEffect(() => {
-  //   getRaceInfo()
-  //     .then(prev => {
-  //       setState(
-  //         {
-  //           ...prev,
-  //           stage: prev.data.stage.parents[0].description,
-  //           racers: prev.data.probabilities.markets[1].outcomes,
-  //           probability: prev.data.probabilities.markets[1].outcomes
-  //         }
-  //       )
-  //     })
-  // }, [])
-
-  // const displayRaceOdds = seasonRaces.map(odds => {
-
-    // return (
-    //   <RaceOdds
-    //     key={odds.name}
-    //     probabilities={odds.probability}
-    //     racerList={odds.name}
-    //   />
-    // )
-  // })
-
 
   return (
     <div className="App">
@@ -89,7 +59,7 @@ function App() {
               {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
               <div className='grid-container'>
                 {/* {race ? <RaceOdds /> : <p>Select a Race</p>} */}
-                {seasonRaces && race ? <RaceOdds /> : <p>Loading...</p>}
+                {seasonRaces && race ? <RaceOdds /> : <p>Select a race</p>}
               </div>
 
 

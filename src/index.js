@@ -16,6 +16,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
+import { getFormHelperTextUtilityClasses } from '@mui/material';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAcLKceqwZYyHUo1oEF7-W0jAobBbLEcHY",
@@ -66,12 +67,17 @@ const addSeasonInfo = async () => {
 
 // adds probability to Firestore database via raceId
 const addProbability = async () => {
-    axios.get(`/api/943423`)
+    axios.get(`/api/941463`)
         .then(value => {
             const raceId = value.data.stage.id;
-            updateDoc(doc(db, "2022", `${raceId}`), {
-                probabilities: value.data.probabilities.markets[0].outcomes
-            })
+            const markets = value.data.probabilities.markets;
+            for (let market of markets) {
+                if (market.type === "competitor") {
+                    updateDoc(doc(db, "2022", `${raceId}`), {
+                        probabilities: market.outcomes
+                    })
+                }
+            }
         })
 }
 
@@ -91,7 +97,7 @@ function addCancelledRaceProbabilities() {
 
 // adds race results per driver to Firestore database via raceId
 const addRaceResult = async () => {
-    axios.get(`/api/result/943143`)
+    axios.get(`/api/result/943423`)
         .then(value => {
             let raceId = value.data.stage.id;
             if (value.data.stage.status === "Cancelled") {
