@@ -17,7 +17,7 @@ export default function SelectRace() {
     console.log(race);
   }, [race])
 
-  function clickEvent(e) {
+  function clickEvent() {
     setRace(document.getElementById('country-select-demo').value)
   }
 

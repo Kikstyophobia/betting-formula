@@ -30,8 +30,9 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log("app", race);
-  }, [race])
+    // console.log("app", race);
+    // console.log(seasonRaces);
+  }, [seasonRaces])
 
 
   function getSeason() {
@@ -62,15 +63,16 @@ function App() {
   //     })
   // }, [])
 
-  const displayRaceOdds = state.probability.map(odds => {
-    return (
-      <RaceOdds
-        key={odds.name}
-        probabilities={odds.probability}
-        racerList={odds.name}
-      />
-    )
-  })
+  // const displayRaceOdds = seasonRaces.map(odds => {
+
+    // return (
+    //   <RaceOdds
+    //     key={odds.name}
+    //     probabilities={odds.probability}
+    //     racerList={odds.name}
+    //   />
+    // )
+  // })
 
 
   return (
@@ -86,7 +88,8 @@ function App() {
               {/* Race Select */}
               {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
               <div className='grid-container'>
-                {/* {currentRace ? displayRaceOdds : <p>Select a Race</p>} */}
+                {/* {race ? <RaceOdds /> : <p>Select a Race</p>} */}
+                {seasonRaces && race ? <RaceOdds /> : <p>Loading...</p>}
               </div>
 
 
