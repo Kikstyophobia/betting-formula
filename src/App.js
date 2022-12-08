@@ -11,7 +11,7 @@ import { db } from '.';
 import { collection, doc, getDocs } from 'firebase/firestore';
 import SelectRace from './components/SelectRace';
 import { SeasonContext } from './contexts/SeasonContext';
-import { CurrentRaceContext } from './contexts/CurrentRaceContext'
+import { CurrentRaceContext } from './contexts/CurrentRaceContext';
 
 function App() {
   const [state, setState] = useState({
@@ -20,6 +20,7 @@ function App() {
     probability: []
   });
 
+  const [race, setRace] = useState();
   const [seasonRaces, setSeasonRaces] = useState();
   // const [races, setRaces] = useState([]);
   // const [currentRace, setCurrentRace] = useState();
@@ -27,6 +28,11 @@ function App() {
   useEffect(() => {
     getSeason();
   }, [])
+
+  useEffect(() => {
+    console.log("app", race);
+  }, [race])
+
 
   function getSeason() {
     const seasonCollectionRef = collection(db, '2022');
@@ -72,19 +78,22 @@ function App() {
       <TopNav />
       <main>
         <SeasonContext.Provider value={[seasonRaces]}>
-          <div className="content-body">
-            <p className='race'>{state.stage}</p>
+          <CurrentRaceContext.Provider value={[race, setRace]}>
 
-            {/* Race Select */}
-            {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
-            <div className='grid-container'>
-              {/* {currentRace ? displayRaceOdds : <p>Select a Race</p>} */}
+            <div className="content-body">
+              <p className='race'>{race}</p>
+
+              {/* Race Select */}
+              {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
+              <div className='grid-container'>
+                {/* {currentRace ? displayRaceOdds : <p>Select a Race</p>} */}
+              </div>
+
+
+              <SearchBar racers={state.racers} />
+
             </div>
-
-
-            <SearchBar racers={state.racers} />
-
-          </div>
+          </CurrentRaceContext.Provider>
         </SeasonContext.Provider>
       </main>
 

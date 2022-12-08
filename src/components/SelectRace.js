@@ -7,8 +7,7 @@ import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 
 export default function SelectRace() {
   const [seasonRaces, setSeasonRaces] = useContext(SeasonContext);
-  // const [currentRace, setCurrentRace] = useContext(CurrentRaceContext);
-  const [race, setRace] = useState("no race")
+  const [race, setRace] = useContext(CurrentRaceContext);
 
   const races = seasonRaces.map(race => {
     return race.description;
