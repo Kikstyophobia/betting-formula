@@ -46,6 +46,20 @@
   right: 2.5em;
 }
 
+.race-search {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding-bottom: 20px;
+}
+
+.race-button {
+  font-size: 1.3em;
+  width: 150px;
+}
+
+/* GRID  */
+
 .grid-container {
   display: flex;
   justify-content: center;
@@ -58,35 +72,36 @@
   grid-template-columns: repeat(4, 200px);
   grid-column-gap: 80px;
   width: 1100px;
-  /* grid-auto-rows: 40px; */
-  /* grid-row-gap: 10px; */
 }
 
 .name {
   display: flex;
-  align-items: flex-start;
-  width: 250px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 300px;
 }
 
 .odds {
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .odds-item {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  /* width: 300px; */
+  width: 220px;
 }
 
-.grid-item {
-  /* display: flex;
-  font-size: 0.9em;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 130px; */
+.cancelled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+
+/* BET SELECTION */
 
 .bet-box {
   display: flex;
@@ -105,7 +120,7 @@
 }
 
 .bet-button {
-  font-size: 1.5em;
+  font-size: 1.3em;
   width: 150px;
 }
 
@@ -115,3 +130,4 @@
   flex-direction: row;
   gap: 5px;
 }
+

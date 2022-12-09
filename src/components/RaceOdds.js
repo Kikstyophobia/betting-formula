@@ -1,6 +1,4 @@
 import { React, useContext, useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../index';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { SeasonContext } from '../contexts/SeasonContext';
 
@@ -47,12 +45,6 @@ export default function RaceOdds() {
       </div>
     )
   })
-
-
-  // maps through probabilities for racer names to pair with odds
-  // const displayRacers = probabilities.map(data => {
-  //   return data.name;
-  // })
 
   return <>{!cancelled ? displayOdds : <p id='cancelled'>Race cancelled, no information available.</p>}</>
 }

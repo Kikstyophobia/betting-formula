@@ -52,7 +52,7 @@ export default function SelectRace() {
           />
         )}
       />
-      <button onClick={clickEvent}>SELECT RACE</button>
+      <button className='race-button' onClick={clickEvent}>Select Race</button>
     </div>
   )
 }
