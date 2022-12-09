@@ -62,18 +62,30 @@
   /* grid-row-gap: 10px; */
 }
 
+.name {
+  display: flex;
+  align-items: flex-start;
+  width: 250px;
+}
+
+.odds {
+  display: flex;
+  align-items: flex-end;
+}
+
 .odds-item {
   display: flex;
-  gap: 20px;
-  width: 300px;
+  flex-direction: row;
+  gap: 10px;
+  /* width: 300px; */
 }
 
 .grid-item {
-  display: flex;
+  /* display: flex;
   font-size: 0.9em;
   flex-direction: row;
   justify-content: flex-start;
-  width: 130px;
+  width: 130px; */
 }
 
 .bet-box {
@@ -95,7 +107,6 @@
 .bet-button {
   font-size: 1.5em;
   width: 150px;
-  /* border-radius: 5px; */
 }
 
 .bet-select,

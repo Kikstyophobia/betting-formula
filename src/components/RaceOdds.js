@@ -10,6 +10,7 @@ export default function RaceOdds() {
   const seasonRaces = useContext(SeasonContext);
   const [cancelled, setCancelled] = useState(false);
 
+
   useEffect(() => {
     seasonRaces.forEach(doc => {
       doc.map(data => {
@@ -25,10 +26,6 @@ export default function RaceOdds() {
     })
   }, [race]);
 
-  useEffect(() => {
-    console.log("probabilities:", probabilities);
-  }, [probabilities]);
-
 
   // maps through win probablities of each racer per race
   // and converts win % probability to money line odds
@@ -43,20 +40,19 @@ export default function RaceOdds() {
     } else {
       convertedOdds = 0;
     }
-    return convertedOdds;
+    return (
+      <div className='odds-item'>
+        <p className='name'>{data.name}</p>
+        <p className='odds'>{convertedOdds}</p>
+      </div>
+    )
   })
 
 
   // maps through probabilities for racer names to pair with odds
-  const displayRacers = probabilities.map(data => {
-    return data.name;
-  })
+  // const displayRacers = probabilities.map(data => {
+  //   return data.name;
+  // })
 
-
-  return (
-    <div className='odds-item'>
-      <div className='grid-item'>{!cancelled ? displayRacers : <p id='cancelled'>Race cancelled, no information available.</p>}</div>
-      <div className='grid-item'>{!cancelled ? displayOdds : <p></p>}</div>
-    </div>
-  )
+  return <>{!cancelled ? displayOdds : <p id='cancelled'>Race cancelled, no information available.</p>}</>
 }
