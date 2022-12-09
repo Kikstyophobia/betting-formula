@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 import TopNav from './components/NavBar.js'
 import RaceOdds from './components/RaceOdds'
 import useInfo from './api/useInfo';
+import Loading from './components/Loading';
 import { db } from '.';
 import { collection, doc, getDocs } from 'firebase/firestore';
 import SelectRace from './components/SelectRace';
@@ -11,12 +12,6 @@ import { SeasonContext } from './contexts/SeasonContext';
 import { CurrentRaceContext } from './contexts/CurrentRaceContext';
 
 function App() {
-  const [state, setState] = useState({
-    stage: "",
-    racers: [],
-    probability: []
-  });
-
   const [race, setRace] = useState('');
   const [seasonRaces, setSeasonRaces] = useState('');
 
@@ -48,7 +43,7 @@ function App() {
 
             <div className="content-body">
               <p className='race'>{race}</p>
-              {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
+              {seasonRaces ? <SelectRace /> : <Loading/>}
               {seasonRaces && race ? <RaceOdds /> : <p></p>}
               {seasonRaces && race ? <SearchBar /> : <p className='message'>Welcome to Betting Formula! Please select a race to get started.</p>}
             </div>
