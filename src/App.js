@@ -48,15 +48,11 @@ function App() {
 
             <div className="content-body">
               <p className='race'>{race}</p>
-
               {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
-              <div className='grid-container'>
-                {seasonRaces && race ? <RaceOdds /> : <p></p>}
-              </div>
-
+              {seasonRaces && race ? <RaceOdds /> : <p></p>}
               {seasonRaces && race ? <SearchBar /> : <p>Welcome to Betting Formula! Please select a race.</p>}
-
             </div>
+            
           </CurrentRaceContext.Provider>
         </SeasonContext.Provider>
       </main>

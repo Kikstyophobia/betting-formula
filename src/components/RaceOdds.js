@@ -46,5 +46,5 @@ export default function RaceOdds() {
     )
   })
 
-  return <>{!cancelled ? displayOdds : <p id='cancelled'>Race cancelled, no information available.</p>}</>
+  return <div className='grid-container'>{!cancelled ? displayOdds : <p id='cancelled'>Race cancelled, no information available.</p>}</div>
 }
