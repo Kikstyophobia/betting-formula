@@ -8,9 +8,9 @@ import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 export default function SearchBar() {
   const seasonRaces = useContext(SeasonContext);
   const race = useContext(CurrentRaceContext);
-  const [bet, setBet] = useState();
-  const [betInput, setBetInput] = useState();
-  const [driver, setDriver] = useState();
+  const [bet, setBet] = useState(null);
+  // const [betInput, setBetInput] = useState();
+  const [driver, setDriver] = useState(null);
   const [driverInput, setDriverInput] = useState();
   const [driverList, setDriverList] = useState([]);
   const [cancelled, setCancelled] = useState(false);
@@ -48,13 +48,14 @@ export default function SearchBar() {
               <Autocomplete
                 value={driver}
                 onChange={(event, newValue) => {
+                  console.log(newValue);
                   setDriver(newValue);
                 }}
-                inputValue={driverInput}
-                onInputChange={(event, newInputValue) => {
-                  console.log(newInputValue);
-                  setDriverInput(newInputValue);
-                }}
+                // inputValue={driverInput}
+                // onInputChange={(event, newInputValue) => {
+                //   console.log(newInputValue);
+                //   setDriverInput(newInputValue);
+                // }}
                 id="controllable-states-demo"
                 options={displayDrivers}
                 sx={{ width: 300 }}
@@ -68,12 +69,13 @@ export default function SearchBar() {
               <Autocomplete
                 value={bet}
                 onChange={(event, newValue) => {
+                  console.log(newValue);
                   setBet(newValue);
                 }}
-                inputValue={betInput}
-                onInputChange={(event, newInputValue) => {
-                  setBetInput(newInputValue);
-                }}
+                // inputValue={betInput}
+                // onInputChange={(event, newInputValue) => {
+                //   setBetInput(newInputValue);
+                // }}
                 id="controllable-states-demo"
                 options={betAmounts}
                 sx={{ width: 300 }}

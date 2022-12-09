@@ -39,7 +39,7 @@ export default function RaceOdds() {
       convertedOdds = 0;
     }
     return (
-      <div className='odds-item'>
+      <div className='odds-item' key={data.name}>
         <p className='name'>{data.name}</p>
         <p className='odds'>{convertedOdds}</p>
       </div>
@@ -51,7 +51,7 @@ export default function RaceOdds() {
       {!cancelled ?
         <div className='grid-container'>
           {displayOdds}
-        </div> : <p className='cancelled'>Race cancelled, no information available.</p>}
+        </div> : <p className='message'>Race cancelled, no information available.</p>}
     </>
   )
 }

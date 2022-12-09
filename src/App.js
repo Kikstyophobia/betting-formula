@@ -17,13 +17,13 @@ function App() {
     probability: []
   });
 
-  const [race, setRace] = useState();
-  const [seasonRaces, setSeasonRaces] = useState();
+  const [race, setRace] = useState('');
+  const [seasonRaces, setSeasonRaces] = useState('');
 
   useEffect(() => {
     getSeason();
-  }, [])
-
+  }, []);
+  
   function getSeason() {
     const seasonCollectionRef = collection(db, '2022');
 
@@ -50,9 +50,9 @@ function App() {
               <p className='race'>{race}</p>
               {seasonRaces ? <SelectRace /> : <p>Loading...</p>}
               {seasonRaces && race ? <RaceOdds /> : <p></p>}
-              {seasonRaces && race ? <SearchBar /> : <p>Welcome to Betting Formula! Please select a race.</p>}
+              {seasonRaces && race ? <SearchBar /> : <p className='message'>Welcome to Betting Formula! Please select a race to get started.</p>}
             </div>
-            
+
           </CurrentRaceContext.Provider>
         </SeasonContext.Provider>
       </main>

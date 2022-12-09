@@ -44,7 +44,7 @@ export default function SelectRace() {
           <TextField
             id='race-field'
             {...params}
-            label="Choose a race"
+            placeholder='Select a race'
             inputProps={{
               ...params.inputProps,
               autoComplete: 'new-password', // disable autocomplete and autofill
