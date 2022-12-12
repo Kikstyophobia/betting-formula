@@ -3,15 +3,19 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { SeasonContext } from '../contexts/SeasonContext';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
+import { BetContext } from '../contexts/BetContext';
+import { DriverContext } from '../contexts/DriverContext';
+import { BalanceContext } from '../contexts/BalanceContext';
+import { BetDriverContext } from '../contexts/BetDriverContext';
 
 
 export default function SearchBar() {
   const seasonRaces = useContext(SeasonContext);
   const race = useContext(CurrentRaceContext);
-  const [bet, setBet] = useState(null);
-  // const [betInput, setBetInput] = useState();
-  const [driver, setDriver] = useState(null);
-  const [driverInput, setDriverInput] = useState();
+  const [bet, setBet] = useContext(BetContext);
+  const [driver, setDriver] = useContext(DriverContext);
+  const [betDriver, setBetDriver] = useContext(BetDriverContext);
+  // const [balance, setBalance] = useContext(BalanceContext);
   const [driverList, setDriverList] = useState([]);
   const [cancelled, setCancelled] = useState(false);
 
@@ -30,15 +34,35 @@ export default function SearchBar() {
     })
   }, [race]);
 
+
   let displayDrivers = driverList.map(data => {
     return data.name;
   })
+
+  function driverOdds(driver) {
+    driverList.map(data => {
+      if (data.name === driver) {
+        setBetDriver({
+          name: data.name,
+          odds: data.probability
+        })
+      }
+    })
+  }
+
+  useEffect(() => {
+    driverOdds(driver)
+    console.log("effect driver", driver);
+  }, [driver])
+
+  useEffect(() => {
+    console.log(betDriver)
+  }, [betDriver])
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
 
   return (
     <>
-      {/* {countries} */}
       {!cancelled ?
         <div className='search-area'>
           <div className='bet-box'>
@@ -51,11 +75,6 @@ export default function SearchBar() {
                   console.log(newValue);
                   setDriver(newValue);
                 }}
-                // inputValue={driverInput}
-                // onInputChange={(event, newInputValue) => {
-                //   console.log(newInputValue);
-                //   setDriverInput(newInputValue);
-                // }}
                 id="controllable-states-demo"
                 options={displayDrivers}
                 sx={{ width: 300 }}
@@ -72,10 +91,6 @@ export default function SearchBar() {
                   console.log(newValue);
                   setBet(newValue);
                 }}
-                // inputValue={betInput}
-                // onInputChange={(event, newInputValue) => {
-                //   setBetInput(newInputValue);
-                // }}
                 id="controllable-states-demo"
                 options={betAmounts}
                 sx={{ width: 300 }}
@@ -85,8 +100,6 @@ export default function SearchBar() {
             </div>
           </div>
         </div> : <p></p>}
-      {/* <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-      <div>{`inputValue: '${inputValue}'`}</div> */}
     </>
   );
 }
