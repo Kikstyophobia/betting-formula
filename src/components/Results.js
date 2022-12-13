@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
+import { BetDriverContext } from "../contexts/BetDriverContext";
 import { CurrentRaceContext } from "../contexts/CurrentRaceContext";
+import { ResultsContext } from "../contexts/ResultsContext";
 import { SeasonContext } from "../contexts/SeasonContext";
 
 
 export default function Results() {
   const [seasonRaces] = useContext(SeasonContext);
   const [race] = useContext(CurrentRaceContext);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useContext(ResultsContext);
+  const [betDriver] = useContext(BetDriverContext);
 
 
   useEffect(() => {
@@ -14,15 +17,8 @@ export default function Results() {
       if (race === doc.description) {
         setResults(doc.results);
       }
-      // doc.map(data => {
-      //   console.log(data.results)
-      // })
     })
   }, [seasonRaces])
-
-  useEffect(() => {
-    console.log(results)
-  }, [results])
 
   const resultsList = results.map(data => {
 
@@ -30,8 +26,8 @@ export default function Results() {
       <div className="odds-item" key={data.name}>
         <p>{data.name}</p>
         <div>
-          <p>Started: {data.result.grid}</p>
           <p>Finished: {data.result.position}</p>
+          <p>Started: {data.result.grid}</p>
         </div>
       </div>
 
@@ -40,7 +36,7 @@ export default function Results() {
 
   return (
     <>
-      <p>results</p>
+      <p>Race Results</p>
       <div className="grid-container">
         {resultsList}
       </div>

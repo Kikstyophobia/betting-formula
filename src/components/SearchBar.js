@@ -5,8 +5,8 @@ import { SeasonContext } from '../contexts/SeasonContext';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { BetContext } from '../contexts/BetContext';
 import { DriverContext } from '../contexts/DriverContext';
-import { BalanceContext } from '../contexts/BalanceContext';
 import { BetDriverContext } from '../contexts/BetDriverContext';
+import { RenderResultsContext } from '../contexts/RenderResultsContext';
 
 
 export default function SearchBar() {
@@ -15,7 +15,7 @@ export default function SearchBar() {
   const [bet, setBet] = useContext(BetContext);
   const [driver, setDriver] = useContext(DriverContext);
   const [betDriver, setBetDriver] = useContext(BetDriverContext);
-  // const [balance, setBalance] = useContext(BalanceContext);
+  const [render, setRender] = useContext(RenderResultsContext);
   const [driverList, setDriverList] = useState([]);
   const [cancelled, setCancelled] = useState(false);
 
@@ -39,7 +39,8 @@ export default function SearchBar() {
     return data.name;
   })
 
-  function driverOdds(driver) {
+  function driverOdds() {
+    let driver = document.getElementById('driver-select-state').value;
     driverList.map(data => {
       if (data.name === driver) {
         setBetDriver({
@@ -48,16 +49,8 @@ export default function SearchBar() {
         })
       }
     })
+    setRender(true);
   }
-
-  useEffect(() => {
-    driverOdds(driver)
-    console.log("effect driver", driver);
-  }, [driver])
-
-  useEffect(() => {
-    console.log(betDriver)
-  }, [betDriver])
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
 
@@ -75,7 +68,7 @@ export default function SearchBar() {
                   console.log(newValue);
                   setDriver(newValue);
                 }}
-                id="controllable-states-demo"
+                id="driver-select-state"
                 options={displayDrivers}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Choose a driver" />}
@@ -91,12 +84,12 @@ export default function SearchBar() {
                   console.log(newValue);
                   setBet(newValue);
                 }}
-                id="controllable-states-demo"
+                id="bet-select-state"
                 options={betAmounts}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Bet Amount" />}
               />
-              <button className='bet-button'>Place Bet</button>
+              <button className='bet-button' onClick={driverOdds}>Place Bet</button>
             </div>
           </div>
         </div> : <p></p>}

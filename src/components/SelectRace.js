@@ -3,10 +3,12 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { SeasonContext } from '../contexts/SeasonContext';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
+import { RenderResultsContext } from '../contexts/RenderResultsContext';
 
 export default function SelectRace() {
   const [seasonRaces, setSeasonRaces] = useContext(SeasonContext);
   const [race, setRace] = useContext(CurrentRaceContext);
+  const [render, setRender] = useContext(RenderResultsContext);
 
   const races = seasonRaces.map(race => {
     return race.description;
@@ -17,13 +19,16 @@ export default function SelectRace() {
   }, [race])
 
   function clickEvent() {
-    setRace(document.getElementById('country-select-demo').value);
+    setRender(false);
+    setRace(document.getElementById('country-select').value);
+    // setRace(document.getElementById('country-select-demo').value); clear value in driver and bet select
+    // setRace(document.getElementById('country-select-demo').value);
   }
 
   return (
     <div className='race-search'>
       <Autocomplete
-        id="country-select-demo"
+        id="country-select"
         sx={{ width: 350 }}
         options={races}
         autoHighlight

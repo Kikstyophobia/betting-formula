@@ -5,22 +5,20 @@ import { SeasonContext } from '../contexts/SeasonContext';
 export default function RaceOdds() {
   const [probabilities, setProbabilities] = useState([]);
   const race = useContext(CurrentRaceContext);
-  const seasonRaces = useContext(SeasonContext);
+  const [seasonRaces] = useContext(SeasonContext);
   const [cancelled, setCancelled] = useState(false);
 
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
-      doc.map(data => {
-        if (race[0] === data.description) {
-          if (data.probabilities === null) {
+        if (race[0] === doc.description) {
+          if (doc.probabilities === null) {
             setCancelled(true);
           } else {
             setCancelled(false);
-            setProbabilities(data.probabilities);
+            setProbabilities(doc.probabilities);
           }
         }
-      })
     })
   }, [race]);
 

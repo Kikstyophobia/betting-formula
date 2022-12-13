@@ -5,6 +5,7 @@ import TopNav from './components/NavBar.js'
 import RaceOdds from './components/RaceOdds'
 import useInfo from './api/useInfo';
 import Loading from './components/Loading';
+import Results from './components/Results';
 import { db } from '.';
 import { collection, doc, getDocs } from 'firebase/firestore';
 import SelectRace from './components/SelectRace';
@@ -14,7 +15,8 @@ import { BetContext } from './contexts/BetContext';
 import { DriverContext } from './contexts/DriverContext';
 import { BalanceContext } from './contexts/BalanceContext';
 import { BetDriverContext } from './contexts/BetDriverContext';
-import Results from './components/Results';
+import { ResultsContext } from './contexts/ResultsContext';
+import { RenderResultsContext } from './contexts/RenderResultsContext';
 
 function App() {
   const [race, setRace] = useState('');
@@ -26,19 +28,12 @@ function App() {
     name: "",
     odds: ""
   })
+  const [results, setResults] = useState([]);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     getSeason();
   }, []);
-
-
-  useEffect(() => {
-    console.log("driver", driver);
-  }, [driver])
-
-  useEffect(() => {
-    console.log("bet", bet);
-  }, [bet])
 
   function getSeason() {
     const seasonCollectionRef = collection(db, '2022');
@@ -62,22 +57,26 @@ function App() {
           <SeasonContext.Provider value={[seasonRaces]}>
             <BalanceContext.Provider value={[balance, setBalance]}>
               <BetDriverContext.Provider value={[betDriver, setBetDriver]}>
+                <ResultsContext.Provider value={[results, setResults]}>
 
-                <TopNav />
-                <main>
-                  <CurrentRaceContext.Provider value={[race, setRace]}>
+                  <TopNav />
+                  <main>
+                    <RenderResultsContext.Provider value={[render, setRender]}>
+                      <CurrentRaceContext.Provider value={[race, setRace]}>
 
-                    <div className="content-body">
-                      <p className='race'>{race}</p>
-                      {seasonRaces ? <SelectRace /> : <Loading />}
-                      {seasonRaces && race ? <RaceOdds /> : <p></p>}
-                      {seasonRaces && race ? <SearchBar /> : <p className='message'>Welcome to Betting Formula! Please select a race to get started.</p>}
-                      {seasonRaces && race ? <Results /> : <p></p>}
-                    </div>
+                        <div className="content-body">
+                          <p className='race'>{race}</p>
+                          {seasonRaces ? <SelectRace /> : <Loading />}
+                          {seasonRaces && race ? <RaceOdds /> : <p></p>}
+                          {seasonRaces && race ? <SearchBar /> : <p className='message'>Welcome to Betting Formula! Please select a race to get started.</p>}
+                          {render ? <Results /> : <p></p>}
+                        </div>
 
-                  </CurrentRaceContext.Provider>
-                </main>
+                      </CurrentRaceContext.Provider>
+                    </RenderResultsContext.Provider>
+                  </main>
 
+                </ResultsContext.Provider>
               </BetDriverContext.Provider>
             </BalanceContext.Provider>
           </SeasonContext.Provider>
