@@ -21,8 +21,6 @@ export default function SelectRace() {
   function clickEvent() {
     setRender(false);
     setRace(document.getElementById('country-select').value);
-    // setRace(document.getElementById('country-select-demo').value); clear value in driver and bet select
-    // setRace(document.getElementById('country-select-demo').value);
   }
 
   return (

@@ -40,7 +40,7 @@ export default function SearchBar() {
   })
 
   function driverOdds() {
-    let driver = document.getElementById('driver-select-state').value;
+    let driver = document.getElementById('driver-select-value').value;
     driverList.map(data => {
       if (data.name === driver) {
         setBetDriver({
@@ -63,12 +63,13 @@ export default function SearchBar() {
             <div className='driver-select'>
               <br />
               <Autocomplete
+                disabled={render}
                 value={driver}
                 onChange={(event, newValue) => {
                   console.log(newValue);
                   setDriver(newValue);
                 }}
-                id="driver-select-state"
+                id="driver-select-value"
                 options={displayDrivers}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Choose a driver" />}
@@ -79,17 +80,18 @@ export default function SearchBar() {
             <div className='bet-select'>
               <br />
               <Autocomplete
+                disabled={render}
                 value={bet}
                 onChange={(event, newValue) => {
                   console.log(newValue);
                   setBet(newValue);
                 }}
-                id="bet-select-state"
+                id="bet-select-value"
                 options={betAmounts}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Bet Amount" />}
               />
-              <button className='bet-button' onClick={driverOdds}>Place Bet</button>
+              <button type="button" className='bet-button' disabled={render} onClick={driverOdds}>Place Bet</button>
             </div>
           </div>
         </div> : <p></p>}
