@@ -23,12 +23,12 @@ function App() {
   const [bet, setBet] = useState(null);
   const [driver, setDriver] = useState(null);
   const [balance, setBalance] = useState(1000);
+  const [results, setResults] = useState([]);
+  const [render, setRender] = useState(false);
   const [betDriver, setBetDriver] = useState({
     name: "",
     odds: ""
   })
-  const [results, setResults] = useState([]);
-  const [render, setRender] = useState(false);
 
   useEffect(() => {
     getSeason();
@@ -67,13 +67,14 @@ function App() {
                           <p className='race'>{race}</p>
                           {seasonRaces ? <SelectRace /> : <Loading />}
                           {seasonRaces && race ? <RaceOdds /> : <p></p>}
-                          {seasonRaces && race ? <SearchBar /> : 
-                          <p className='message'>Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
-                            How To Play: <br></br> 
-                            1. Select Race to bet on <br></br>
-                            2. Select Driver to bet on <br></br>
-                            3. Select Amount to bet
-                          </p>}
+                          {seasonRaces && race ? <SearchBar /> :
+                            <p className='message'>
+                              Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
+                              How To Play: <br></br>
+                              1. Select Race to bet on <br></br>
+                              2. Select Driver to bet on <br></br>
+                              3. Select Amount to bet
+                            </p>}
                           {render ? <Results /> : <p></p>}
                         </div>
 

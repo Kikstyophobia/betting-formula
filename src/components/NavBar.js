@@ -13,24 +13,20 @@ export default function TopNav() {
   const [results] = useContext(ResultsContext);
 
   useEffect(() => {
-    if (betDriver.name && results[0]) {
+    if (betDriver.name && results[0] && bet) {
       let odds = betDriver.odds;
       let convertedOdds = "";
       let betAmount = Number(bet.slice(1));
 
       if (odds > 50) {
-        convertedOdds = Number((betAmount * 2 - (odds / (100 - odds) * 100)).toFixed(0));
+        convertedOdds = Math.round(betAmount / Number((odds / (100 - odds) * 100) / 100));
       } else if (odds < 50) {
-        convertedOdds = Number(((100 - odds) / odds * 100).toFixed(0));
-      } else {
-        convertedOdds = 0;
-      }
+        convertedOdds = Math.round(betAmount * Number(((100 - odds) / odds * 100).toFixed() / 100));
+      } 
 
       if (betDriver.name === results[0].name) {
-        console.log("win payout", convertedOdds)
         setBalance(convertedOdds + balance);
       } else {
-        console.log("did not win")
         setBalance(balance - betAmount);
       }
     }

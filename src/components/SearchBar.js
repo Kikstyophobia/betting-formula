@@ -56,14 +56,13 @@ export default function SearchBar() {
 
   return (
     <>
-      {!cancelled ?
+      {!cancelled && !render ?
         <div className='search-area'>
           <div className='bet-box'>
             {/* DRIVER SELECT */}
             <div className='driver-select'>
               <br />
               <Autocomplete
-                disabled={render}
                 value={driver}
                 onChange={(event, newValue) => {
                   console.log(newValue);
@@ -80,7 +79,6 @@ export default function SearchBar() {
             <div className='bet-select'>
               <br />
               <Autocomplete
-                disabled={render}
                 value={bet}
                 onChange={(event, newValue) => {
                   console.log(newValue);
@@ -91,7 +89,7 @@ export default function SearchBar() {
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Bet Amount" />}
               />
-              <button type="button" className='bet-button' disabled={render} onClick={driverOdds}>Place Bet</button>
+              <button type="button" className='bet-button' onClick={driver && bet ? driverOdds : null}>Place Bet</button>
             </div>
           </div>
         </div> : <p></p>}
