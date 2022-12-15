@@ -57,10 +57,10 @@ function App() {
             <BalanceContext.Provider value={[balance, setBalance]}> {/* State for player funds */}
               <BetDriverContext.Provider value={[betDriver, setBetDriver]}> {/* State for the selected Driver */}
                 <ResultsContext.Provider value={[results, setResults]}> {/* State for results of a selected race */}
+                  <RenderResultsContext.Provider value={[render, setRender]}> {/* State for rendering Results after placing bet */}
 
-                  <TopNav />
-                  <main>
-                    <RenderResultsContext.Provider value={[render, setRender]}> {/* State for rendering Results after placing bet */}
+                    <TopNav />
+                    <main>
                       <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
 
                         <div className="content-body">
@@ -73,15 +73,16 @@ function App() {
                               How To Play: <br></br>
                               1. Select Race to bet on <br></br>
                               2. Select Driver to bet on <br></br>
-                              3. Select Amount to bet
+                              3. Select Amount to bet <br></br>
+                              <p><strong>Note:</strong> If you run out of funds, refresh the page.</p>
                             </p>}
                           {render ? <Results /> : <p></p>}
                         </div>
 
                       </CurrentRaceContext.Provider>
-                    </RenderResultsContext.Provider>
-                  </main>
+                    </main>
 
+                  </RenderResultsContext.Provider>
                 </ResultsContext.Provider>
               </BetDriverContext.Provider>
             </BalanceContext.Provider>

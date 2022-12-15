@@ -7,30 +7,30 @@ import { BetContext } from '../contexts/BetContext';
 import { DriverContext } from '../contexts/DriverContext';
 import { BetDriverContext } from '../contexts/BetDriverContext';
 import { RenderResultsContext } from '../contexts/RenderResultsContext';
+import { BalanceContext } from '../contexts/BalanceContext';
 
 
 export default function SearchBar() {
-  const seasonRaces = useContext(SeasonContext);
+  const [seasonRaces] = useContext(SeasonContext);
   const race = useContext(CurrentRaceContext);
   const [bet, setBet] = useContext(BetContext);
   const [driver, setDriver] = useContext(DriverContext);
   const [betDriver, setBetDriver] = useContext(BetDriverContext);
   const [render, setRender] = useContext(RenderResultsContext);
+  const [balance] = useContext(BalanceContext);
   const [driverList, setDriverList] = useState([]);
   const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
-      doc.map(data => {
-        if (race[0] === data.description) {
-          if (data.probabilities === null) {
-            setCancelled(true);
-          } else {
-            setCancelled(false);
-            setDriverList(data.probabilities);
-          }
+      if (race[0] === doc.description) {
+        if (doc.probabilities === null) {
+          setCancelled(true);
+        } else {
+          setCancelled(false);
+          setDriverList(doc.probabilities);
         }
-      })
+      }
     })
   }, [race]);
 
@@ -53,6 +53,8 @@ export default function SearchBar() {
   }
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
+  const showAmounts = betAmounts.filter(amount => Number(amount.slice(1)) <= balance)
+
 
   return (
     <>
@@ -63,6 +65,7 @@ export default function SearchBar() {
             <div className='driver-select'>
               <br />
               <Autocomplete
+                disabled={balance > 0 ? false : true}
                 value={driver}
                 onChange={(event, newValue) => {
                   console.log(newValue);
@@ -79,17 +82,18 @@ export default function SearchBar() {
             <div className='bet-select'>
               <br />
               <Autocomplete
+                disabled={balance > 0 ? false : true}
                 value={bet}
                 onChange={(event, newValue) => {
                   console.log(newValue);
                   setBet(newValue);
                 }}
                 id="bet-select-value"
-                options={betAmounts}
+                options={showAmounts}
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Bet Amount" />}
               />
-              <button type="button" className='bet-button' onClick={driver && bet ? driverOdds : null}>Place Bet</button>
+              <button type="button" className='bet-button' disabled={balance > 0 ? false : true} onClick={driver && bet ? driverOdds : null}>Place Bet</button>
             </div>
           </div>
         </div> : <p></p>}

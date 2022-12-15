@@ -3,17 +3,17 @@ import { BalanceContext } from '../contexts/BalanceContext';
 import { BetContext } from '../contexts/BetContext';
 import { BetDriverContext } from '../contexts/BetDriverContext';
 import { ResultsContext } from '../contexts/ResultsContext';
-import { SeasonContext } from '../contexts/SeasonContext';
+import { RenderResultsContext } from '../contexts/RenderResultsContext';
 
 export default function TopNav() {
-  const [seasonRaces] = useContext(SeasonContext);
   const [balance, setBalance] = useContext(BalanceContext);
   const [betDriver] = useContext(BetDriverContext);
   const [bet] = useContext(BetContext);
   const [results] = useContext(ResultsContext);
+  const [render] = useContext(RenderResultsContext);
 
   useEffect(() => {
-    if (betDriver.name && results[0] && bet) {
+    if (betDriver.name && results[0] && bet && render) {
       let odds = betDriver.odds;
       let convertedOdds = "";
       let betAmount = Number(bet.slice(1));
@@ -25,12 +25,13 @@ export default function TopNav() {
       } 
 
       if (betDriver.name === results[0].name) {
-        setBalance(convertedOdds + balance);
+        setBalance(balance + convertedOdds);
       } else {
         setBalance(balance - betAmount);
       }
     }
-  }, [results, betDriver, bet])
+
+  }, [results])
 
   return (
     <span className='nav-main'>

@@ -128,3 +128,13 @@
   gap: 5px;
 }
 
+.bet-summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 2em;
+}
+
+.table {
+  border-spacing: 2em 10px;
+}
