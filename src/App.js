@@ -70,11 +70,11 @@ function App() {
                           {seasonRaces && race ? <SearchBar /> :
                             <p className='message'>
                               Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
-                              How To Play: <br></br>
+                              <u><strong>How To Play:</strong></u> <br></br>
                               1. Select Race to bet on <br></br>
                               2. Select Driver to bet on winning the race <br></br>
-                              3. Select Amount to bet <br></br>
-                              <p><strong>Note:</strong> If you run out of funds, refresh the page.</p>
+                              3. Select Amount to bet <br></br><br></br>
+                              <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
                             </p>}
                           {render ? <Results /> : <p></p>}
                         </div>

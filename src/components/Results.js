@@ -46,7 +46,7 @@ export default function Results() {
 
   const betDriverResult = results.map(data => {
     if (data.name === betDriver.name) {
-      return data.result.position
+      return data.result.position;
     }
   })
 
@@ -55,6 +55,7 @@ export default function Results() {
     <>
       <p><strong>Bet Results</strong></p>
       <div className="bet-summary">
+
         <table className="table">
           <thead>
             <tr>

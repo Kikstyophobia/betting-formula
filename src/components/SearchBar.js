@@ -53,7 +53,7 @@ export default function SearchBar() {
   }
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
-  const showAmounts = betAmounts.filter(amount => Number(amount.slice(1)) <= balance)
+  const showAmounts = betAmounts.filter(amount => Number(amount.slice(1)) <= balance);
 
 
   return (
@@ -65,6 +65,7 @@ export default function SearchBar() {
             <div className='driver-select'>
               <br />
               <Autocomplete
+                className='driver-dropdown'
                 disabled={balance > 0 ? false : true}
                 value={driver}
                 onChange={(event, newValue) => {
@@ -82,6 +83,7 @@ export default function SearchBar() {
             <div className='bet-select'>
               <br />
               <Autocomplete
+                className='bet-dropdown'
                 disabled={balance > 0 ? false : true}
                 value={bet}
                 onChange={(event, newValue) => {

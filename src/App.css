@@ -3,7 +3,13 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /* background-color: #15151e; */
+
+  /* background-color: rgba(232, 234, 237, 1) */
+}
+
+:root {
+  /* background-color: rgb(128, 134, 139); */
+  /* background-color: #212529; */
 }
 
 .content-body {
@@ -34,6 +40,7 @@
   min-width: 900px;
   height: 20px;
   padding: 1.5em 1.5em;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 }
 
 .app-name {
@@ -56,14 +63,16 @@
 .race-button {
   font-size: 1.3em;
   width: 150px;
+  /* background-color: rgb(128, 134, 139); */
 }
+
 
 /* GRID  */
 
 .grid-container {
   display: flex;
   justify-content: center;
-  border: #e10600 1px solid;
+  border: #e10600 3px solid;
   border-radius: 10px;
   padding: 10px;
   margin: auto;
@@ -72,6 +81,7 @@
   grid-template-columns: repeat(4, 200px);
   grid-column-gap: 80px;
   width: 1100px;
+  /* background-color: rgb(128, 134, 139); */
 }
 
 .name {
@@ -119,6 +129,7 @@
 .bet-button {
   font-size: 1.3em;
   width: 150px;
+  /* background-color: rgb(128, 134, 139); */
 }
 
 .bet-select,

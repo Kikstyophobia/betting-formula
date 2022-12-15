@@ -12,6 +12,10 @@ export default function TopNav() {
   const [results] = useContext(ResultsContext);
   const [render] = useContext(RenderResultsContext);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   useEffect(() => {
     if (betDriver.name && results[0] && bet && render) {
       let odds = betDriver.odds;
@@ -35,7 +39,7 @@ export default function TopNav() {
 
   return (
     <span className='nav-main'>
-      <p className='app-name'>Betting Formula</p>
+      <div className='app-name' onClick={refreshPage}>Betting Formula</div>
       <p className='balance'>Current Balance: ${balance}</p>
     </span>
   )
