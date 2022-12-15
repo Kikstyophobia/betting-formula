@@ -72,7 +72,7 @@ function App() {
                               Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
                               How To Play: <br></br>
                               1. Select Race to bet on <br></br>
-                              2. Select Driver to bet on <br></br>
+                              2. Select Driver to bet on winning the race <br></br>
                               3. Select Amount to bet <br></br>
                               <p><strong>Note:</strong> If you run out of funds, refresh the page.</p>
                             </p>}
