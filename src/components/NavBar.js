@@ -4,6 +4,8 @@ import { BetContext } from '../contexts/BetContext';
 import { BetDriverContext } from '../contexts/BetDriverContext';
 import { ResultsContext } from '../contexts/ResultsContext';
 import { RenderResultsContext } from '../contexts/RenderResultsContext';
+import { WinAmountContext } from '../contexts/WinAmountContext';
+
 
 export default function TopNav() {
   const [balance, setBalance] = useContext(BalanceContext);
@@ -11,6 +13,7 @@ export default function TopNav() {
   const [bet] = useContext(BetContext);
   const [results] = useContext(ResultsContext);
   const [render] = useContext(RenderResultsContext);
+  const [winAmount, setWinAmount] = useContext(WinAmountContext);
 
   function refreshPage() {
     window.location.reload(false);
@@ -26,9 +29,10 @@ export default function TopNav() {
         convertedOdds = Math.round(betAmount / Number((odds / (100 - odds) * 100) / 100));
       } else if (odds < 50) {
         convertedOdds = Math.round(betAmount * Number(((100 - odds) / odds * 100).toFixed() / 100));
-      } 
+      }
 
       if (betDriver.name === results[0].name) {
+        setWinAmount(convertedOdds);
         setBalance(balance + convertedOdds);
       } else {
         setBalance(balance - betAmount);

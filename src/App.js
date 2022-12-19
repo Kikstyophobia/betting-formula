@@ -16,6 +16,7 @@ import { BalanceContext } from './contexts/BalanceContext';
 import { BetDriverContext } from './contexts/BetDriverContext';
 import { ResultsContext } from './contexts/ResultsContext';
 import { RenderResultsContext } from './contexts/RenderResultsContext';
+import { WinAmountContext } from './contexts/WinAmountContext';
 
 function App() {
   const [race, setRace] = useState('');
@@ -25,6 +26,7 @@ function App() {
   const [balance, setBalance] = useState(1000);
   const [results, setResults] = useState([]);
   const [render, setRender] = useState(false);
+  const [winAmount, setWinAmount] = useState(null);
   const [betDriver, setBetDriver] = useState({
     name: "",
     odds: ""
@@ -58,30 +60,41 @@ function App() {
               <BetDriverContext.Provider value={[betDriver, setBetDriver]}> {/* State for the selected Driver */}
                 <ResultsContext.Provider value={[results, setResults]}> {/* State for results of a selected race */}
                   <RenderResultsContext.Provider value={[render, setRender]}> {/* State for rendering Results after placing bet */}
+                    <WinAmountContext.Provider value={[winAmount, setWinAmount]}> {/* State for setting the amount of money won per wager */}
 
-                    <TopNav />
-                    <main>
-                      <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
 
-                        <div className="content-body">
-                          <p className='race'>{race}</p>
-                          {seasonRaces ? <SelectRace /> : <Loading />}
-                          {seasonRaces && race ? <RaceOdds /> : <p></p>}
-                          {seasonRaces && race ? <SearchBar /> :
-                            <p className='message'>
-                              Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
-                              <u><strong>How To Play:</strong></u> <br></br>
-                              1. Select Race to bet on <br></br>
-                              2. Select Driver to bet on winning the race <br></br>
-                              3. Select Amount to bet <br></br><br></br>
-                              <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
-                            </p>}
-                          {render ? <Results /> : <p></p>}
-                        </div>
+                      <TopNav />
+                      <main>
+                        <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
 
-                      </CurrentRaceContext.Provider>
-                    </main>
+                          <div className="content-body">
+                            <p className='race'>{race}</p>
+                            {seasonRaces ? <SelectRace /> : <Loading />}
+                            {seasonRaces && race ? <RaceOdds /> : <p></p>}
+                            {seasonRaces && race ? <SearchBar /> :
+                              <p className='message'>
+                                Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
+                                <u><strong>How To Play:</strong></u> <br></br>
+                                1. Select Race to bet on <br></br>
+                                2. Select Driver to bet on winning the race <br></br>
+                                3. Select Amount to bet <br></br><br></br>
+                                <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
+                                <br></br>
+                                <p>Designed and created by Calvin Chung
+                                  <br></br>
+                                  <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank">https://www.linkedin.com/in/calvinhwchung</a>
+                                  <br></br>
+                                  <a href="https://github.com/Kikstyophobia/betting-formula" target="_blank">GitHub Repository</a>
+                                </p>
 
+                              </p>}
+                            {render ? <Results /> : <p></p>}
+                          </div>
+
+                        </CurrentRaceContext.Provider>
+                      </main>
+
+                    </WinAmountContext.Provider>
                   </RenderResultsContext.Provider>
                 </ResultsContext.Provider>
               </BetDriverContext.Provider>
