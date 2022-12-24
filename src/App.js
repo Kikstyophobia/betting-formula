@@ -19,7 +19,7 @@ import { RenderResultsContext } from './contexts/RenderResultsContext';
 import { WinAmountContext } from './contexts/WinAmountContext';
 
 function App() {
-  const [race, setRace] = useState('');
+  const [race, setRace] = useState(null);
   const [seasonRaces, setSeasonRaces] = useState('');
   const [bet, setBet] = useState(null);
   const [driver, setDriver] = useState(null);
@@ -62,7 +62,6 @@ function App() {
                   <RenderResultsContext.Provider value={[render, setRender]}> {/* State for rendering Results after placing bet */}
                     <WinAmountContext.Provider value={[winAmount, setWinAmount]}> {/* State for setting the amount of money won per wager */}
 
-
                       <TopNav />
                       <main>
                         <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
@@ -72,11 +71,11 @@ function App() {
                             {seasonRaces ? <SelectRace /> : <Loading />}
                             {seasonRaces && race ? <RaceOdds /> : <p></p>}
                             {seasonRaces && race ? <SearchBar /> :
-                              <p className='message'>
+                              <div className='message'>
                                 Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
                                 <u><strong>How To Play:</strong></u> <br></br>
                                 1. Select Race to bet on <br></br>
-                                2. Select Driver to bet on winning the race <br></br>
+                                2. Select Driver to win the race <br></br>
                                 3. Select Amount to bet <br></br><br></br>
                                 <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
                                 <br></br>
@@ -86,8 +85,8 @@ function App() {
                                   <br></br>
                                   <a href="https://github.com/Kikstyophobia/betting-formula" target="_blank">GitHub Repository</a>
                                 </p>
-
-                              </p>}
+                              </div>
+                            }
                             {render ? <Results /> : <p></p>}
                           </div>
 

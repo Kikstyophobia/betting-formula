@@ -51,33 +51,30 @@ export default function Results() {
     }
   })
 
-  useEffect(() => {
-    console.log("betdriverresult", betDriverResult);
-  }, [betDriverResult])
-
   const columns = [
     {
       id: 'driver',
-      label: 'Driver', minWidth: 100,
+      label: 'Driver', 
+      minWidth: 100,
       align: 'left',
     },
     {
       id: 'finished',
       label: 'Finished',
       align: 'center',
-      minWidth: 100,
+      minWidth: 50,
       maxWidth: 100
     },
     {
       id: 'started',
       label: 'Started',
-      minWidth: 100,
+      minWidth: 50,
       align: 'center'
     },
     {
       id: 'time',
       label: 'Time',
-      minWidth: 100,
+      minWidth: 50,
       align: 'center'
     }
   ];
@@ -137,9 +134,7 @@ export default function Results() {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
+                            {column.format ? column.format(value) : value}
                           </TableCell>
                         );
                       })}
