@@ -43,8 +43,8 @@ export default function TopNav() {
 
   return (
     <span className='nav-main'>
-      <div className='app-name' onClick={refreshPage}>Betting Formula</div>
-      <p className='balance'>Current Balance: ${balance}</p>
+      <div className='app-name' onClick={refreshPage}><strong>Betting Formula</strong></div>
+      <p className='balance'>Balance: ${balance}</p>
     </span>
   )
 }
