@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import './App.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SearchBar from './components/SearchBar';
 import TopNav from './components/NavBar.js'
 import RaceOdds from './components/RaceOdds'
@@ -32,6 +33,16 @@ function App() {
     odds: ""
   })
 
+  const theme = createTheme({
+    typography: {
+      allVariants: {
+        fontFamily: 'Titillium Web',
+        textTransform: 'none',
+        fontSize: 16,
+      },
+    },
+  });
+
   useEffect(() => {
     getSeason();
   }, []);
@@ -61,38 +72,38 @@ function App() {
                 <ResultsContext.Provider value={[results, setResults]}> {/* State for results of a selected race */}
                   <RenderResultsContext.Provider value={[render, setRender]}> {/* State for rendering Results after placing bet */}
                     <WinAmountContext.Provider value={[winAmount, setWinAmount]}> {/* State for setting the amount of money won per wager */}
+                      <ThemeProvider theme={theme}>
+                        <TopNav />
+                        <main>
+                          <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
 
-                      <TopNav />
-                      <main>
-                        <CurrentRaceContext.Provider value={[race, setRace]}> {/* State for selected Race */}
-
-                          <div className="content-body">
-                            <p className='race'>{race}</p>
-                            {seasonRaces ? <SelectRace /> : <Loading />}
-                            {seasonRaces && race ? <RaceOdds /> : <p></p>}
-                            {seasonRaces && race ? <SearchBar /> :
-                              <div className='message'>
-                                Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
-                                <u><strong>How To Play:</strong></u> <br></br>
-                                1. Select Race to bet on <br></br>
-                                2. Select Driver to win the race <br></br>
-                                3. Select Amount to bet <br></br><br></br>
-                                <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
-                                <br></br>
-                                <p>Designed and created by Calvin Chung
+                            <div className="content-body">
+                              <p className='race'>{race}</p>
+                              {seasonRaces ? <SelectRace /> : <Loading />}
+                              {seasonRaces && race ? <RaceOdds /> : <p></p>}
+                              {seasonRaces && race ? <SearchBar /> :
+                                <div className='message'>
+                                  Welcome to Betting Formula! Please select a race to get started. <br></br><br></br>
+                                  <u><strong>How To Play:</strong></u> <br></br>
+                                  1. Select Race to bet on <br></br>
+                                  2. Select Driver to win the race <br></br>
+                                  3. Select Amount to bet <br></br><br></br>
+                                  <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
                                   <br></br>
-                                  <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank">https://www.linkedin.com/in/calvinhwchung</a>
-                                  <br></br>
-                                  <a href="https://github.com/Kikstyophobia/betting-formula" target="_blank">GitHub Repository</a>
-                                </p>
-                              </div>
-                            }
-                            {render ? <Results /> : <p></p>}
-                          </div>
+                                  <p>Designed and created by Calvin Chung
+                                    <br></br>
+                                    <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/calvinhwchung</a>
+                                    <br></br>
+                                    <a href="https://github.com/Kikstyophobia/betting-formula" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                                  </p>
+                                </div>
+                              }
+                              {render ? <Results /> : <p></p>}
+                            </div>
 
-                        </CurrentRaceContext.Provider>
-                      </main>
-
+                          </CurrentRaceContext.Provider>
+                        </main>
+                        </ThemeProvider>
                     </WinAmountContext.Provider>
                   </RenderResultsContext.Provider>
                 </ResultsContext.Provider>
