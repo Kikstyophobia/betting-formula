@@ -5,7 +5,6 @@
   flex-direction: column;
 }
 
-
 .content-body {
   display: flex;
   flex-direction: column;
@@ -31,7 +30,6 @@
   z-index: 999;
   top: 0;
   width: 100%;
-  min-width: 700px;
   height: 60px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 }
@@ -56,6 +54,7 @@
 .race-button {
   font-size: 1.3em;
   width: 150px;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 
@@ -149,6 +148,7 @@
 .bet-button {
   font-size: 1.3em;
   width: 150px;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .bet-select,

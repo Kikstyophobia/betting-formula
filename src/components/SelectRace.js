@@ -23,9 +23,9 @@ export default function SelectRace() {
   }, [race])
 
 
-  function clickEvent() {
+  function clickEvent(newValue) {
     setRender(false);
-    setRace(document.getElementById('country-select').value);
+    setRace(newValue);
     setDriver(null);
     setBet(null);
   }
@@ -37,9 +37,13 @@ export default function SelectRace() {
         sx={{ width: 350 }}
         options={races}
         autoHighlight
+        onChange={(event, newValue) => {
+          clickEvent(newValue)
+        }}
         renderInput={(params) => (
           <TextField
             id='race-field'
+            value="ass"
             {...params}
             placeholder='Select a race'
             inputProps={{
@@ -49,7 +53,7 @@ export default function SelectRace() {
           />
         )}
       />
-      <button className='race-button' onClick={clickEvent}>Select Race</button>
+      {/* <button className='race-button' onClick={clickEvent}>Select Race</button> */}
     </div>
   )
 }

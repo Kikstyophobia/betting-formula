@@ -92,7 +92,7 @@ function App() {
                                   <br></br>
                                   <p>Designed and created by Calvin Chung
                                     <br></br>
-                                    <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/calvinhwchung</a>
+                                    <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                                     <br></br>
                                     <a href="https://github.com/Kikstyophobia/betting-formula" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
                                   </p>
