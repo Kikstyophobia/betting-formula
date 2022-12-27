@@ -53,7 +53,6 @@ export default function SelectRace() {
           />
         )}
       />
-      {/* <button className='race-button' onClick={clickEvent}>Select Race</button> */}
     </div>
   )
 }

@@ -87,9 +87,8 @@ function App() {
                                   <u><strong>How To Play:</strong></u> <br></br>
                                   1. Select Race to bet on <br></br>
                                   2. Select Driver to win the race <br></br>
-                                  3. Select Amount to bet <br></br><br></br>
+                                  3. Select Amount to bet <br></br>
                                   <p><strong>Note:</strong> If you run out of funds, refresh the page by clicking on the title.</p>
-                                  <br></br>
                                   <p>Designed and created by Calvin Chung
                                     <br></br>
                                     <a href="https://www.linkedin.com/in/calvinhwchung" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -103,7 +102,7 @@ function App() {
 
                           </CurrentRaceContext.Provider>
                         </main>
-                        </ThemeProvider>
+                      </ThemeProvider>
                     </WinAmountContext.Provider>
                   </RenderResultsContext.Provider>
                 </ResultsContext.Provider>

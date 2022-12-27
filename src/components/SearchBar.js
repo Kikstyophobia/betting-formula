@@ -63,7 +63,7 @@ export default function SearchBar() {
           <div className='bet-box'>
             {/* DRIVER SELECT */}
             <div className='driver-select'>
-              <br />
+
               <Autocomplete
                 className='driver-dropdown'
                 disabled={balance > 0 ? false : true}
@@ -81,7 +81,7 @@ export default function SearchBar() {
 
             {/* BET SELECT */}
             <div className='bet-select'>
-              <br />
+
               <Autocomplete
                 className='bet-dropdown'
                 disabled={balance > 0 ? false : true}

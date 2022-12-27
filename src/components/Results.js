@@ -56,6 +56,7 @@ export default function Results() {
       id: 'driver',
       label: 'Driver', 
       minWidth: 100,
+      maxWidth: 200,
       align: 'left',
     },
     {
@@ -63,18 +64,20 @@ export default function Results() {
       label: 'Finished',
       align: 'center',
       minWidth: 50,
-      maxWidth: 100
+      maxWidth: 200
     },
     {
       id: 'started',
       label: 'Started',
       minWidth: 50,
+      maxWidth: 200,
       align: 'center'
     },
     {
       id: 'time',
       label: 'Time',
       minWidth: 50,
+      maxWidth: 200,
       align: 'center'
     }
   ];
