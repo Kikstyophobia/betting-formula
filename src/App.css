@@ -122,6 +122,14 @@
   }
 }
 
+@media only screen and (max-width: 505px) {
+
+  .grid-container {
+    grid-template-columns: repeat(2, 170px) !important;
+  }
+
+}
+
 
 .content-body {
   display: flex;
