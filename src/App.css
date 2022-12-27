@@ -39,12 +39,14 @@
     flex-direction: column !important;
     align-items: center;
     justify-content: center;
+    gap: 10px !important;
   }
 
   .bet-select {
     display: flex;
     flex-direction: column !important;
     align-items: center;
+    gap: 10px !important;
   }
 
   .grid-container {
@@ -150,6 +152,10 @@
     justify-content: center !important;
     flex-direction: column !important;
     margin-top: 0 !important;
+  }
+
+  .table {
+    border-spacing: 0.2em;
   }
 }
 
@@ -314,5 +320,5 @@
 }
 
 .table {
-  border-spacing: 2em 10px;
+  border-spacing: 1em 10px;
 }
