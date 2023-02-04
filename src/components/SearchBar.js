@@ -8,6 +8,7 @@ import { DriverContext } from '../contexts/DriverContext';
 import { BetDriverContext } from '../contexts/BetDriverContext';
 import { RenderResultsContext } from '../contexts/RenderResultsContext';
 import { BalanceContext } from '../contexts/BalanceContext';
+import { ProbabilitiesContext } from '../contexts/ProbablilitiesContext';
 
 
 export default function SearchBar() {
@@ -18,6 +19,7 @@ export default function SearchBar() {
   const [betDriver, setBetDriver] = useContext(BetDriverContext);
   const [render, setRender] = useContext(RenderResultsContext);
   const [balance] = useContext(BalanceContext);
+  const [probabilities] = useContext(ProbabilitiesContext)
   const [driverList, setDriverList] = useState([]);
   const [cancelled, setCancelled] = useState(false);
 
@@ -33,7 +35,6 @@ export default function SearchBar() {
       }
     })
   }, [race]);
-
 
   let displayDrivers = driverList.map(data => {
     return data.name;
@@ -52,8 +53,38 @@ export default function SearchBar() {
     setRender(true);
   }
 
+  let potentialEarnings;
+  const displayDriverOdds = probabilities.map(data => {
+    let odds = data.probability;
+    let convertedOdds = "";
+    if (driver === data.name) {
+
+      if (odds > 50) {
+        convertedOdds = (odds / (100 - odds) * -100).toFixed(0);
+      } else if (odds < 50) {
+        convertedOdds = `+${((100 - odds) / odds * 100).toFixed(0)}`;
+      } else {
+        convertedOdds = 0;
+      }
+    }
+
+    if (bet && driver === data.name) {
+      let betAmount = Number(bet.slice(1));
+
+      if (odds > 50) {
+        potentialEarnings = Math.round(betAmount / Number((odds / (100 - odds) * 100) / 100));
+      } else if (odds < 50) {
+        potentialEarnings = Math.round(betAmount * Number(((100 - odds) / odds * 100).toFixed() / 100));
+      }
+    }
+
+    return convertedOdds;
+  })
+
+
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
   const showAmounts = betAmounts.filter(amount => Number(amount.slice(1)) <= balance);
+  const buttonExists = document.getElementsByClassName("bet-button");
 
 
   return (
@@ -99,6 +130,36 @@ export default function SearchBar() {
             </div>
           </div>
         </div> : <p></p>}
+      {bet && driver && buttonExists.length > 0 ?
+        <div>
+          <h3><strong>Projected Results</strong></h3>
+          <div className="bet-summary projected">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col"><u>Driver Selected</u></th>
+                  <th scope="col"><u>Driver Odds</u></th>
+                  <th scope="col"><u>Bet Amount</u></th>
+                  {/* {betDriverResult[0] === 1 && <th scope="col"><u>Amount Won</u></th>} */}
+                  <th scope="col"><u>Potential Earnings</u></th>
+                  <th scope="col"><u>Final Balance</u></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{driver}</td>
+                  <td>{displayDriverOdds}</td>
+                  <td>{bet}</td>
+                  {/* {betDriverResult[0] === 1 && <td>${winAmount}</td>} */}
+                  <td>${potentialEarnings}</td>
+                  <td>${balance + potentialEarnings}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        : null}
+
     </>
   );
 }

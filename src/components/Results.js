@@ -51,6 +51,7 @@ export default function Results() {
     }
   })
 
+
   const columns = [
     {
       id: 'driver',
@@ -84,7 +85,7 @@ export default function Results() {
 
   return (
     <>
-      <p><strong>Bet Results</strong></p>
+      <h3><strong>Bet Results</strong></h3>
       <div className="bet-summary">
 
         <table className="table">
@@ -109,16 +110,16 @@ export default function Results() {
         </table>
       </div>
 
-      <p><strong>Race Results</strong></p>
+      <h3><strong>Race Results</strong></h3>
       <div className="results-box">
 
         <TableContainer sx={{ maxHeight: 340 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                {columns.map((column) => (
+                {columns.map((column, index) => (
                   <TableCell
-                    key={column.id}
+                    key={index}
                     align={column.align}
                     style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
                     sx={{ fontWeight: 'bold' }}
@@ -130,9 +131,9 @@ export default function Results() {
             </TableHead>
             <TableBody>
               {rows
-                .map((row) => {
+                .map((row, index) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (

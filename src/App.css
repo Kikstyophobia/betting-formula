@@ -69,7 +69,11 @@
   }
 }
 
+
 @media only screen and (max-width: 755px) {
+  .message p {
+    font-size: 20px;
+  }  
 
   .content-body {
     margin-top: 30px !important;
@@ -295,7 +299,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
   gap: 5px;
 }
 

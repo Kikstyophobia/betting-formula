@@ -1,9 +1,10 @@
 import { React, useContext, useEffect, useState } from 'react';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
+import { ProbabilitiesContext } from '../contexts/ProbablilitiesContext';
 import { SeasonContext } from '../contexts/SeasonContext';
 
 export default function RaceOdds() {
-  const [probabilities, setProbabilities] = useState([]);
+  const [probabilities, setProbabilities] = useContext(ProbabilitiesContext);
   const race = useContext(CurrentRaceContext);
   const [seasonRaces] = useContext(SeasonContext);
   const [cancelled, setCancelled] = useState(false);
@@ -11,14 +12,14 @@ export default function RaceOdds() {
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
-        if (race[0] === doc.description) {
-          if (doc.probabilities === null) {
-            setCancelled(true);
-          } else {
-            setCancelled(false);
-            setProbabilities(doc.probabilities);
-          }
+      if (race[0] === doc.description) {
+        if (doc.probabilities === null) {
+          setCancelled(true);
+        } else {
+          setCancelled(false);
+          setProbabilities(doc.probabilities);
         }
+      }
     })
   }, [race]);
 
@@ -36,6 +37,7 @@ export default function RaceOdds() {
     } else {
       convertedOdds = 0;
     }
+
     return (
       <div className='odds-item' key={data.name}>
         <p className='name'>{data.name}</p>
@@ -44,12 +46,14 @@ export default function RaceOdds() {
     )
   })
 
+
   return (
     <>
       {!cancelled ?
         <div className='grid-container'>
           {displayOdds}
-        </div> : <p className='message'>Race cancelled, no information available.</p>}
+        </div>
+        : <p className='message'>Race cancelled, no information available.</p>}
     </>
   )
 }
