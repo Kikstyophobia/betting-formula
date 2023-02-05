@@ -53,6 +53,8 @@ export default function SearchBar() {
     setRender(true);
   }
 
+
+
   let potentialEarnings;
   const displayDriverOdds = probabilities.map(data => {
     let odds = data.probability;
@@ -84,8 +86,7 @@ export default function SearchBar() {
 
   const betAmounts = ['$20', '$50', '$100', '$250', '$500', '$1000'];
   const showAmounts = betAmounts.filter(amount => Number(amount.slice(1)) <= balance);
-  const buttonExists = document.getElementsByClassName("bet-button");
-
+  // const buttonExists = document.getElementsByClassName("bet-button");
 
   return (
     <>
@@ -130,7 +131,7 @@ export default function SearchBar() {
             </div>
           </div>
         </div> : <p></p>}
-      {bet && driver && buttonExists.length > 0 ?
+      {bet && driver && document.getElementsByClassName("bet-button") > 1 ?
         <div>
           <h3><strong>Projected Results</strong></h3>
           <div className="bet-summary projected">
@@ -140,7 +141,6 @@ export default function SearchBar() {
                   <th scope="col"><u>Driver Selected</u></th>
                   <th scope="col"><u>Driver Odds</u></th>
                   <th scope="col"><u>Bet Amount</u></th>
-                  {/* {betDriverResult[0] === 1 && <th scope="col"><u>Amount Won</u></th>} */}
                   <th scope="col"><u>Potential Earnings</u></th>
                   <th scope="col"><u>Final Balance</u></th>
                 </tr>
@@ -150,7 +150,6 @@ export default function SearchBar() {
                   <td>{driver}</td>
                   <td>{displayDriverOdds}</td>
                   <td>{bet}</td>
-                  {/* {betDriverResult[0] === 1 && <td>${winAmount}</td>} */}
                   <td>${potentialEarnings}</td>
                   <td>${balance + potentialEarnings}</td>
                 </tr>
