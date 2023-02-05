@@ -101,7 +101,7 @@ function App() {
                                     </p>
                                   </div>
                                 }
-                                {render ? <Results /> : <p></p>}
+                                {bet && driver ? <Results /> : null}
                               </div>
 
                             </CurrentRaceContext.Provider>
