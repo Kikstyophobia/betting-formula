@@ -19,6 +19,7 @@ export default function TopNav() {
     window.location.reload(false);
   }
 
+
   useEffect(() => {
     if (betDriver.name && results[0] && bet && render) {
       let odds = betDriver.odds;
@@ -39,7 +40,7 @@ export default function TopNav() {
       }
     }
 
-  }, [results])
+  }, [render])
 
   return (
     <span className='nav-main'>

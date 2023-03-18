@@ -91,7 +91,6 @@ export default function Results() {
     return convertedOdds;
   })
 
-
   const columns = [
     {
       id: 'driver',
