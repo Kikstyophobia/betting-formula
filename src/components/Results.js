@@ -30,9 +30,9 @@ export default function Results() {
   const [render] = useContext(RenderResultsContext);
   const [probabilities] = useContext(ProbabilitiesContext);
 
-  useEffect(() => {
-    console.log("asdfasdf", driver);
-  }, [driver])
+  // useEffect(() => {
+  //   console.log(rows);
+  // })
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
