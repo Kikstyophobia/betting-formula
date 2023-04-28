@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BetDriverContext } from "../contexts/BetDriverContext";
-import { CurrentRaceContext } from "../contexts/CurrentRaceContext";
-import { ResultsContext } from "../contexts/ResultsContext";
-import { SeasonContext } from "../contexts/SeasonContext";
-import { BetContext } from "../contexts/BetContext";
-import { BalanceContext } from "../contexts/BalanceContext";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { BetDriverContext } from "../contexts/BetDriverContext";
+import { CurrentRaceContext } from "../contexts/CurrentRaceContext";
+import { ResultsContext } from "../contexts/ResultsContext";
+import { SeasonContext } from "../contexts/SeasonContext";
+import { BetContext } from "../contexts/BetContext";
+import { BalanceContext } from "../contexts/BalanceContext";
 import { WinAmountContext } from "../contexts/WinAmountContext";
 import { RenderResultsContext } from "../contexts/RenderResultsContext";
 import { DriverContext } from "../contexts/DriverContext";
@@ -30,27 +30,16 @@ export default function Results() {
   const [render] = useContext(RenderResultsContext);
   const [probabilities] = useContext(ProbabilitiesContext);
 
-  // useEffect(() => {
-  //   console.log(rows);
-  // })
-
-  useEffect(() => {
-    seasonRaces.forEach(doc => {
-      if (race === doc.description) {
-        setResults(doc.results);
-      }
-    })
-  }, [seasonRaces])
 
   useEffect(() => {
     let info = [];
     results.map((data) => {
       if (data.result.status !== "Finished") {
-        info.push({ driver: data.name, finished: "DNF", started: data.result.grid, time: "DNF" })
+        info.push({ driver: data.name, team: data.team.name, finished: "DNF", started: data.result.grid, time: "DNF" })
       } else if (data.result.time === "1l") {
-        info.push({ driver: data.name, finished: data.result.position, started: data.result.grid, time: "+1 lap" })
+        info.push({ driver: data.name, team: data.team.name, finished: data.result.position, started: data.result.grid, time: "+1 lap" })
       } else {
-        info.push({ driver: data.name, finished: data.result.position, started: data.result.grid, time: data.result.time })
+        info.push({ driver: data.name, team: data.team.name, finished: data.result.position, started: data.result.grid, time: data.result.time })
       }
     })
     setRows(info);
@@ -95,7 +84,14 @@ export default function Results() {
     {
       id: 'driver',
       label: 'Driver',
-      minWidth: 100,
+      minWidth: 50,
+      maxWidth: 200,
+      align: 'left',
+    },
+    {
+      id: 'team',
+      label: 'Team',
+      minWidth: 50,
       maxWidth: 200,
       align: 'left',
     },
@@ -103,20 +99,20 @@ export default function Results() {
       id: 'finished',
       label: 'Finished',
       align: 'center',
-      minWidth: 50,
+      minWidth: 100,
       maxWidth: 200
     },
     {
       id: 'started',
       label: 'Started',
-      minWidth: 50,
+      minWidth: 100,
       maxWidth: 200,
       align: 'center'
     },
     {
       id: 'time',
       label: 'Time',
-      minWidth: 50,
+      minWidth: 100,
       maxWidth: 200,
       align: 'center'
     }

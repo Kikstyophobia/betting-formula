@@ -2,6 +2,7 @@ import { React, useContext, useEffect, useState } from 'react';
 import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { ProbabilitiesContext } from '../contexts/ProbablilitiesContext';
 import { SeasonContext } from '../contexts/SeasonContext';
+import { ResultsContext } from '../contexts/ResultsContext';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,12 +16,35 @@ export default function RaceOdds() {
   const race = useContext(CurrentRaceContext);
   const [seasonRaces] = useContext(SeasonContext);
   const [cancelled, setCancelled] = useState(false);
-
+  const [results] = useContext(ResultsContext);
   const [rows, setRows] = useState([]);
 
+
   useEffect(() => {
-    console.log("probs", probabilities);
-  })
+    let info = [];
+
+    probabilities.map((value) => {
+      for (let i = 0; i < results.length; i++) {
+
+        if (results[i].name === value.name) {
+          let odds = value.probability;
+          let convertedOdds = "";
+
+          if (odds > 50) {
+            convertedOdds = (odds / (100 - odds) * -100).toFixed(0);
+          } else if (odds < 50) {
+            convertedOdds = `+${((100 - odds) / odds * 100).toFixed(0)}`;
+          } else {
+            convertedOdds = 0;
+          }
+
+          info.push({ name: value.name, team: results[i].team.name, probability: convertedOdds });
+        }
+      }
+    })
+    setRows(info);
+  }, [probabilities])
+
 
   useEffect(() => {
     seasonRaces.forEach(doc => {
@@ -30,51 +54,34 @@ export default function RaceOdds() {
         } else {
           setCancelled(false);
           setProbabilities(doc.probabilities);
-          // setRows(doc.probabilities)
         }
       }
     })
   }, [race]);
 
   useEffect(() => {
-    
+
   })
-
-
-  // maps through win probablities of each racer per race
-  // and converts win % probability to money line odds
-  // const displayOdds = probabilities.map(data => {
-  //   let odds = data.probability;
-  //   let convertedOdds = "";
-
-  //   if (odds > 50) {
-  //     convertedOdds = (odds / (100 - odds) * -100).toFixed(0);
-  //   } else if (odds < 50) {
-  //     convertedOdds = `+${((100 - odds) / odds * 100).toFixed(0)}`;
-  //   } else {
-  //     convertedOdds = 0;
-  //   }
-
-  //   return (
-  //     <div className='odds-item' key={data.name}>
-  //       <p className='name'>{data.name}</p>
-  //       <p className='odds'>{convertedOdds}</p>
-  //     </div>
-  //   )
-  // })
 
   const columns = [
     {
       id: 'name',
       label: 'Driver',
-      minWidth: 50,
+      minWidth: 100,
+      maxWidth: 200,
+      align: 'center',
+    },
+    {
+      id: 'team',
+      label: 'Team',
+      minWidth: 100,
       maxWidth: 200,
       align: 'center',
     },
     {
       id: 'probability',
       label: 'Odds',
-      minWidth: 50,
+      minWidth: 100,
       maxWidth: 200,
       align: 'center'
     }
@@ -85,41 +92,41 @@ export default function RaceOdds() {
     <>
       {!cancelled ?
         <div className='results-box'>
-             <TableContainer sx={{ maxHeight: 340 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column, index) => (
-                <TableCell
-                  key={index}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
-                  sx={{ fontWeight: 'bold' }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {probabilities
-              .map((row, index) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format ? column.format(value) : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          <TableContainer sx={{ maxHeight: 400 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column, index) => (
+                    <TableCell
+                      key={index}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
+                      sx={{ fontWeight: 'bold' }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .map((row, index) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format ? column.format(value) : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
           {/* {displayOdds} */}
         </div>
         : <p className='message'>Race cancelled, no information available.</p>}

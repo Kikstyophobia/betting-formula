@@ -6,6 +6,7 @@ import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { RenderResultsContext } from '../contexts/RenderResultsContext';
 import { BetContext } from '../contexts/BetContext';
 import { DriverContext } from '../contexts/DriverContext';
+import { ResultsContext } from '../contexts/ResultsContext';
 
 export default function SelectRace() {
   const [seasonRaces, setSeasonRaces] = useContext(SeasonContext);
@@ -13,13 +14,19 @@ export default function SelectRace() {
   const [render, setRender] = useContext(RenderResultsContext);
   const [bet, setBet] = useContext(BetContext);
   const [driver, setDriver] = useContext(DriverContext);
+  const [results, setResults] = useContext(ResultsContext);
 
+ 
   const races = seasonRaces.map(race => {
     return race.description;
   })
 
   useEffect(() => {
-    console.log(race);
+    seasonRaces.forEach(doc => {
+      if (race === doc.description) {
+        setResults(doc.results);
+      }
+    })
   }, [race])
 
 
