@@ -3,6 +3,7 @@ import { CurrentRaceContext } from '../contexts/CurrentRaceContext';
 import { ProbabilitiesContext } from '../contexts/ProbablilitiesContext';
 import { SeasonContext } from '../contexts/SeasonContext';
 import { ResultsContext } from '../contexts/ResultsContext';
+import DriverModal from './DriverModal';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,6 +11,9 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 export default function RaceOdds() {
   const [probabilities, setProbabilities] = useContext(ProbabilitiesContext);
@@ -19,6 +23,9 @@ export default function RaceOdds() {
   const [results] = useContext(ResultsContext);
   const [rows, setRows] = useState([]);
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   useEffect(() => {
     let info = [];
@@ -115,11 +122,23 @@ export default function RaceOdds() {
                       <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                         {columns.map((column) => {
                           const value = row[column.id];
+
+                          if (column.id !== 'name') {
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.format ? column.format(value) : value}
+                              </TableCell>
+                            );
+                          }
+
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.format ? column.format(value) : value}
+                              <DriverModal driver={value}/>
+                              {/* {column.format ? column.format(value) : value} */}
                             </TableCell>
                           );
+
+
                         })}
                       </TableRow>
                     );

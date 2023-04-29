@@ -63,7 +63,6 @@ function App() {
       .catch(error => console.log(error.message))
   }
 
-
   return (
     <div className="App">
       <BetContext.Provider value={[bet, setBet]}> {/* State for the selected Bet amount */}
