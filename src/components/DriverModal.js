@@ -11,7 +11,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -23,7 +23,7 @@ export default function DriverModal({ driver }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>{driver}</Button>
+      <Button onClick={handleOpen}>{driver.name}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -31,12 +31,13 @@ export default function DriverModal({ driver }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography id="modal-modal-title" variant="h7" component="h2">
+            {driver.name} {driver.driverInfo.country_code}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+            Car Number: {driver.driverInfo.result.car_number}
+            Team:
+            {driver.driverInfo.team.name}
+            {driver.driverInfo.team.nationality}
         </Box>
       </Modal>
     </div>

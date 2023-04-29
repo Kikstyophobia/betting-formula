@@ -11,9 +11,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+
 
 export default function RaceOdds() {
   const [probabilities, setProbabilities] = useContext(ProbabilitiesContext);
@@ -22,10 +20,6 @@ export default function RaceOdds() {
   const [cancelled, setCancelled] = useState(false);
   const [results] = useContext(ResultsContext);
   const [rows, setRows] = useState([]);
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
 
   useEffect(() => {
     let info = [];
@@ -45,7 +39,7 @@ export default function RaceOdds() {
             convertedOdds = 0;
           }
 
-          info.push({ name: value.name, team: results[i].team.name, probability: convertedOdds });
+          info.push({ name: value.name, team: results[i].team.name, probability: convertedOdds, teamInfo: results[i].team, driverInfo: results[i] });
         }
       }
     })
@@ -65,10 +59,6 @@ export default function RaceOdds() {
       }
     })
   }, [race]);
-
-  useEffect(() => {
-
-  })
 
   const columns = [
     {
@@ -133,11 +123,9 @@ export default function RaceOdds() {
 
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              <DriverModal driver={value}/>
-                              {/* {column.format ? column.format(value) : value} */}
+                              <DriverModal driver={row} />
                             </TableCell>
                           );
-
 
                         })}
                       </TableRow>
