@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import './DriverModal.css';
 
 const style = {
   position: 'absolute',
@@ -14,6 +15,7 @@ const style = {
   // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius: 2
 };
 
 export default function DriverModal({ driver }) {
@@ -34,10 +36,14 @@ export default function DriverModal({ driver }) {
           <Typography id="modal-modal-title" variant="h7" component="h2">
             {driver.name} {driver.driverInfo.country_code}
           </Typography>
+          <div className='modal-driver'>
             Car Number: {driver.driverInfo.result.car_number}
-            Team:
-            {driver.driverInfo.team.name}
-            {driver.driverInfo.team.nationality}
+            Nationality: {driver.driverInfo.nationality}
+          </div>
+          <div className='modal-team'>
+            <p><strong>Team: </strong> {driver.driverInfo.team.name}</p>
+            <p><strong>Team Nationality: </strong>{driver.driverInfo.team.nationality}</p>
+          </div>
         </Box>
       </Modal>
     </div>
