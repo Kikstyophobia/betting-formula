@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
+import './DriverModal.css';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import './DriverModal.css';
+import { DriverConfig } from '../config/DriverConfig';
 
 const style = {
   position: 'absolute',
@@ -12,7 +13,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
   borderRadius: 2
@@ -33,16 +33,17 @@ export default function DriverModal({ driver }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+            <img className='driver-image' src={DriverConfig[driver.name]}></img>
           <Typography id="modal-modal-title" variant="h7" component="h2">
             {driver.name} {driver.driverInfo.country_code}
           </Typography>
           <div className='modal-driver'>
-            Car Number: {driver.driverInfo.result.car_number}
-            Nationality: {driver.driverInfo.nationality}
+            <p><strong>Car Number: </strong> {driver.driverInfo.result.car_number}</p>
+            <p><strong>Country: </strong>{driver.driverInfo.nationality}</p>
           </div>
           <div className='modal-team'>
             <p><strong>Team: </strong> {driver.driverInfo.team.name}</p>
-            <p><strong>Team Nationality: </strong>{driver.driverInfo.team.nationality}</p>
+            <p><strong>Team Location: </strong>{driver.driverInfo.team.nationality}</p>
           </div>
         </Box>
       </Modal>

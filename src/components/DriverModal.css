@@ -1,4 +1,18 @@
-.modal-team {
+.modal-driver.p {
   display: flex;
   flex-direction: column;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.modal-team.p {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.driver-image {
+  max-width: 400px;
+  max-height: 500px;
 }
