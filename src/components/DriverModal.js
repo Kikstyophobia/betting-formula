@@ -11,7 +11,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 450,
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
@@ -33,7 +33,9 @@ export default function DriverModal({ driver }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <div className='modal-image'>
             <img className='driver-image' src={DriverConfig[driver.name]}></img>
+          </div>
           <Typography id="modal-modal-title" variant="h7" component="h2">
             {driver.name} {driver.driverInfo.country_code}
           </Typography>
