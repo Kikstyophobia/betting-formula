@@ -73,7 +73,7 @@ export default function BetHistory({ history }) {
 
   return (
     <div className="bet-history">
-      <img src={statistic} height={25} onClick={handleOpen} ></img>
+      <img className="bet-icon" src={statistic} height={25} onClick={handleOpen} ></img>
 
       <Modal
         open={open}

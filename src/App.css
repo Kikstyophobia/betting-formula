@@ -160,6 +160,10 @@
     position: absolute;
     right: 0.5em;
   }
+  
+  .bet-icon {
+    max-height: 15px;
+  }
 
   .name {
     display: flex;
