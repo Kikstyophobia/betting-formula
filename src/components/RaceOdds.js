@@ -21,13 +21,6 @@ export default function RaceOdds() {
   const [results] = useContext(ResultsContext);
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    console.log("rows", rows);
-  }, [rows])
-
-  useEffect(() => {
-    console.log("res", results);
-  }, [results])
 
   useEffect(() => {
     let info = [];

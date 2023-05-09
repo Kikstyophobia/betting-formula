@@ -42,6 +42,7 @@ export default function SearchBar() {
     driverList.map(data => {
       if (data.name === driver) {
         setBetDriver({
+          race: race,
           name: data.name,
           odds: data.probability
         })

@@ -106,6 +106,7 @@ function App() {
                             </CurrentRaceContext.Provider>
                           </main>
                         </ThemeProvider>
+                        
                       </ProbabilitiesContext.Provider>
                     </WinAmountContext.Provider>
                   </RenderResultsContext.Provider>
