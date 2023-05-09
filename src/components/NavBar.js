@@ -29,6 +29,7 @@ export default function TopNav() {
       let convertedOdds = "";
       let betAmount = Number(bet.slice(1));
       let winLose = "";
+      let amount = "";
 
       if (odds > 50) {
         convertedOdds = Math.round(betAmount / Number((odds / (100 - odds) * 100) / 100));
@@ -38,22 +39,26 @@ export default function TopNav() {
 
       if (betDriver.name === results[0].name) {
         winLose = "Win";
+        amount = balance + convertedOdds;
         setWinAmount(convertedOdds);
         setBalance(balance + convertedOdds);
       } else {
         winLose = "Lose";
+        amount = balance - betAmount;
         setBalance(balance - betAmount);
       }
-      setHistory([{ race: betDriver.race[0], betDriver: betDriver.name, winLose: winLose, bet: bet, balance: `$${balance - betAmount}` }, ...history]);
+      setHistory([{ race: betDriver.race[0], betDriver: betDriver.name, winLose: winLose, bet: bet, balance: `$${amount}` }, ...history]);
     }
 
   }, [render]);
 
   return (
     <span className='nav-main'>
-      <BetHistory history={history} />
       <div className='app-name' onClick={refreshPage}><strong>Betting Formula</strong></div>
-      <p className='balance'>Balance: ${balance}</p>
+      <div className='balance'>
+        <BetHistory history={history} />
+        <p>Balance: ${balance}</p>
+      </div>
     </span>
   )
 }

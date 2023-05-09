@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import './BetHistory.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -16,7 +17,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: "80%",
-  height: "50%",
+  height: "60%",
   maxWidth: "800px",
   maxHeight: "500px",
   bgcolor: 'background.paper',
@@ -71,7 +72,7 @@ export default function BetHistory({ history }) {
   ];
 
   return (
-    <div>
+    <div className="bet-history">
       <img src={statistic} height={25} onClick={handleOpen} ></img>
 
       <Modal
@@ -81,12 +82,14 @@ export default function BetHistory({ history }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h7" component="h2">
-            <p>Bet History</p>
+          <Typography className="bet-history-title" id="modal-modal-title" variant="h7" component="h1" noWrap sx={{ marginTop: 0, marginBottom: 4 }}>
+            Bet History
+          </Typography>
 
+          {history.length > 0 ?
             <div className="bet-history-list">
 
-              <TableContainer sx={{ maxHeight: 340 }}>
+              <TableContainer sx={{ maxHeight: "100%" }}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow>
@@ -124,10 +127,7 @@ export default function BetHistory({ history }) {
                 </Table>
               </TableContainer>
 
-            </div>
-
-
-          </Typography>
+            </div> : <p>No bet history</p>}
 
         </Box>
       </Modal>
